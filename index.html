@@ -145,6 +145,7 @@ img{display:block;max-width:100%}
 .hero-titles{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;opacity:0;animation:fadeInUp .8s ease .5s forwards}
 .hero-h1{font-family:var(--f1);font-weight:700;font-size:clamp(28px,4vw,56px);color:var(--c-w92);text-shadow:0 10px 40px rgba(0,0,0,.55);text-transform:uppercase;white-space:nowrap}
 .hero-hsub{font-family:var(--f1);font-weight:700;font-size:clamp(12px,1.5vw,22px);color:var(--c-w85);text-shadow:0 10px 30px rgba(0,0,0,.55);letter-spacing:.022px}
+.hero-hsub-mobile{display:none;font-family:var(--f1);font-weight:700;font-size:clamp(11px,3.2vw,16px);color:var(--c-w85);text-shadow:0 10px 30px rgba(0,0,0,.55);text-transform:uppercase;line-height:1.4;text-align:center}
 .hero-values{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;opacity:0;animation:fadeInUp .8s ease .9s forwards}
 .hero-row{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
 .hero-val{font-family:var(--f1);font-weight:400;font-size:clamp(22px,3vw,40px);color:var(--c-w92);text-shadow:0 10px 28px rgba(0,0,0,.6);text-transform:uppercase}
@@ -462,6 +463,8 @@ img{display:block;max-width:100%}
 @media(max-width:767px){
   .ticker-wrap{display:flex}
   .hero-values{display:none}
+  .hero-hsub{display:none}
+  .hero-hsub-mobile{display:block}
   .hero-bg img{object-position:calc(50% + 80px) center}
   .hero-row:first-child{flex-wrap:nowrap;gap:10px}
   .hero-val{font-size:clamp(11px,3.2vw,22px)}
@@ -622,6 +625,7 @@ img{display:block;max-width:100%}
       <div class="hero-titles">
         <h1 class="hero-h1">4 МЕХАНІЗОВАНИЙ БАТАЛЬЙОН</h1>
         <p class="hero-hsub">ОКРЕМОЇ ПРЕЗИДЕНТСЬКОЇ БРИГАДИ ІМ. ГЕТЬМАНА БОГДАНА ХМЕЛЬНИЦЬКОГО</p>
+        <p class="hero-hsub-mobile">Окремої Президентської<br>Бригади ім. Гетьмана<br>Богдана Хмельницького</p>
       </div>
       <div class="hero-values">
         <div class="hero-row">

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Figma__get_design_context",
+      "Bash(find 'G:/My Drive/опбр/4mb-site' -type f -name *.html -o -name *.js -o -name *.css)",
+      "mcp__claude_ai_Figma__get_metadata",
+      "Bash(powershell -Command \"\\(Select-String -Path 'G:\\\\My Drive\\\\опбр\\\\4mb-site\\\\4mb-preview_4.html' -Pattern 'polyline points|path d=.M8 5'\\).Count\")"
+    ]
+  }
+}

@@ -189,6 +189,9 @@ img{display:block;max-width:100%}
 .car-dots{display:flex;gap:5.6px;align-items:center}
 .cdot{width:23px;height:8px;background:var(--c-line);border-radius:24px;opacity:.2;cursor:pointer;transition:width .2s,height .2s,opacity .2s}
 .cdot.on{opacity:1;width:24px;height:14px}
+.car-dots-m{display:none;justify-content:center;margin-top:14px}
+.car-dots-m .cdot{width:8px;height:8px;border-radius:50%}
+.car-dots-m .cdot.on{width:8px;height:8px;border-radius:50%;opacity:1}
 .carousel{position:relative;width:100%;overflow:hidden;border-radius:2px}
 .c-track{display:flex;height:auto;transition:transform .55s cubic-bezier(.25,.46,.45,.94);will-change:transform}
 .c-slide{min-width:100%;position:relative;display:flex;gap:14px;align-items:flex-start;background:var(--c-bg)}
@@ -470,6 +473,7 @@ img{display:block;max-width:100%}
   .hero-val{font-size:clamp(11px,3.2vw,22px)}
   .hero-seek{font-size:clamp(14px,4vw,22px)}
   .car-dots{display:none}
+  .car-dots-m{display:flex}
   .car-header{flex-wrap:nowrap;align-items:flex-start;gap:8px}
   .car-btn{width:40px;height:40px}
   .car-btn svg{width:16px;height:16px}
@@ -705,6 +709,7 @@ img{display:block;max-width:100%}
       </div>
     </div>
   </div>
+  <div class="car-dots car-dots-m" id="cs-dots-m"></div>
 </section>
 
 <div class="section-divider"></div>
@@ -768,6 +773,7 @@ img{display:block;max-width:100%}
       </div>
     </div>
   </div>
+  <div class="car-dots car-dots-m" id="cp-dots-m"></div>
 </section>
 
 <div class="section-divider"></div>
@@ -1133,23 +1139,30 @@ function splitMobileSlides(trackId){
     });
   });
 }
-function mkCarousel(trackId,dotsId,prevId,nextId){
+function mkCarousel(trackId,dotsId,prevId,nextId,mDotsId){
   let cur=0;
   const track=document.getElementById(trackId);
   const dotsEl=document.getElementById(dotsId);
+  const mDotsEl=mDotsId?document.getElementById(mDotsId):null;
   const prev=document.getElementById(prevId);
   const next=document.getElementById(nextId);
   const n=track.querySelectorAll('.c-slide').length;
-  for(let i=0;i<n;i++){
-    const d=document.createElement('div');
-    d.className='cdot'+(i===0?' on':'');
-    d.onclick=()=>go(i);
-    dotsEl.appendChild(d);
-  }
+  [dotsEl,mDotsEl].forEach(el=>{
+    if(!el)return;
+    for(let i=0;i<n;i++){
+      const d=document.createElement('div');
+      d.className='cdot'+(i===0?' on':'');
+      d.onclick=()=>go(i);
+      el.appendChild(d);
+    }
+  });
   function go(i){
     cur=Math.max(0,Math.min(n-1,i));
     track.style.transform=`translateX(-${cur*100}%)`;
-    dotsEl.querySelectorAll('.cdot').forEach((d,k)=>d.classList.toggle('on',k===cur));
+    [dotsEl,mDotsEl].forEach(el=>{
+      if(!el)return;
+      el.querySelectorAll('.cdot').forEach((d,k)=>d.classList.toggle('on',k===cur));
+    });
     prev.classList.toggle('off',cur===0);
     next.classList.toggle('off',cur===n-1);
   }
@@ -1157,8 +1170,8 @@ function mkCarousel(trackId,dotsId,prevId,nextId){
 }
 splitMobileSlides('cs-track');
 splitMobileSlides('cp-track');
-const csMove=mkCarousel('cs-track','cs-dots','cs-prev','cs-next');
-const cpMove=mkCarousel('cp-track','cp-dots','cp-prev','cp-next');
+const csMove=mkCarousel('cs-track','cs-dots','cs-prev','cs-next','cs-dots-m');
+const cpMove=mkCarousel('cp-track','cp-dots','cp-prev','cp-next','cp-dots-m');
 /* ── Commanders carousel (mobile only) ── */
 function mkCmdCarousel(){
   if(window.innerWidth>=768)return()=>{};

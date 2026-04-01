@@ -64,6 +64,13 @@ img{display:block;max-width:100%}
 @keyframes navDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes slotUp{from{transform:translateY(100%)}to{transform:translateY(0%)}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── TICKER ─────────────────────────────────────── */
+.ticker-wrap{display:none;position:fixed;top:70px;left:0;right:0;z-index:199;overflow:hidden;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--c-w06);height:34px;align-items:center}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 16s linear infinite}
+.ticker-item{font-family:var(--f1);font-weight:700;font-size:12px;color:var(--c-w92);text-transform:uppercase;letter-spacing:.06em;padding:0 20px}
+.ticker-sep{font-family:var(--f1);font-size:12px;color:rgba(255,255,255,.3);padding:0 4px}
 
 /* ─── HEADER ─────────────────────────────────────── */
 .header{
@@ -453,6 +460,8 @@ img{display:block;max-width:100%}
   .cmd-info{padding:20px 16px}
 }
 @media(max-width:767px){
+  .ticker-wrap{display:flex}
+  .hero-values{display:none}
   .hero-bg img{object-position:calc(50% + 80px) center}
   .hero-row:first-child{flex-wrap:nowrap;gap:10px}
   .hero-val{font-size:clamp(11px,3.2vw,22px)}
@@ -571,6 +580,18 @@ img{display:block;max-width:100%}
     </button>
   </div>
 </header>
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">БРАТЕРСТВО.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ПІДТРИМКА.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ШУКАЄМО СВОЇХ</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">БРАТЕРСТВО.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ПІДТРИМКА.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ШУКАЄМО СВОЇХ</span><span class="ticker-sep">·</span>
+  </div>
+</div>
 
 <div class="burger-overlay" id="burger-overlay" onclick="closeBurger()"></div>
 <nav class="burger-panel" id="burger-panel">

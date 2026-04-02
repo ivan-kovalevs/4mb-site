@@ -63,6 +63,7 @@ img{display:block;max-width:100%}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes navDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes arrowFade{0%,100%{background:#d9d9d9}50%{background:rgba(217,217,217,0.3)}}
 @keyframes slotUp{from{transform:translateY(100%)}to{transform:translateY(0%)}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -529,7 +530,8 @@ img{display:block;max-width:100%}
   .cp-sec .tl-name{position:absolute;bottom:calc(50% + 8px);left:0;right:4px}
   .cp-sec .tl-dot{position:absolute;top:50%;left:0;transform:translateY(-50%);margin:0}
   .cp-sec .tl-date,.cp-sec .tl-continues{position:absolute;top:calc(50% + 8px);left:0}
-  .cp-sec .tl-line{top:50%;bottom:auto;left:4px;transform:translateY(-50%);background:linear-gradient(to right,var(--c-line) 58%,transparent 92%)}
+  .cp-sec .tl-line{top:50%;bottom:auto;left:4px;transform:translateY(-50%);background:linear-gradient(to right,var(--c-line) 55%,transparent 100%)}
+  .cp-sec .tl-line::before{display:block;left:68%;right:0;width:auto;background:linear-gradient(to right,transparent 0%,var(--c-line) 40%);animation:blink 2s ease-in-out infinite}
   .cp-sec .tl-line::after{right:-7px;top:50%;transform:translateY(-50%);width:7px;height:8px;border:none;background:var(--c-line);clip-path:polygon(0 0,100% 50%,0 100%);animation:blink 2s ease-in-out infinite}
   /* ── Photo galleries — full-width carousel ── */
   .cs-sec .carousel,.cp-sec .carousel{margin-left:calc(-1*var(--px));margin-right:calc(-1*var(--px));width:calc(100% + 2*var(--px))}

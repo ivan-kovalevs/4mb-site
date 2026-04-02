@@ -56,7 +56,7 @@ html,body{margin:0;padding:0;background:var(--c-bg)}
 a{text-decoration:none;color:inherit}
 button{border:none;background:none;cursor:pointer;padding:0;font:inherit;color:inherit}
 img{display:block;max-width:100%}
-.page{background:var(--c-bg);min-height:100vh;overflow-x:clip}
+.page{background:var(--c-bg);min-height:100vh;overflow-x:hidden}
 
 /* ─── ANIMATIONS ─────────────────────────────────── */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
@@ -64,13 +64,6 @@ img{display:block;max-width:100%}
 @keyframes navDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes slotUp{from{transform:translateY(100%)}to{transform:translateY(0%)}}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ─── TICKER ─────────────────────────────────────── */
-.ticker-wrap{display:none;position:fixed;top:70px;left:0;right:0;z-index:199;overflow:hidden;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--c-w06);height:34px;align-items:center}
-.ticker-track{display:flex;white-space:nowrap;animation:ticker 16s linear infinite}
-.ticker-item{font-family:var(--f1);font-weight:700;font-size:12px;color:var(--c-w92);text-transform:uppercase;letter-spacing:.06em;padding:0 20px}
-.ticker-sep{font-family:var(--f1);font-size:12px;color:rgba(255,255,255,.3);padding:0 4px}
 
 /* ─── HEADER ─────────────────────────────────────── */
 .header{
@@ -129,8 +122,7 @@ img{display:block;max-width:100%}
 .hero{
   position:relative;width:100%;
   height:100vh;min-height:720px;max-height:900px;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;overflow:clip;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
 .hero-bg{position:absolute;inset:-9px -14px;pointer-events:none;z-index:0}
 .hero-bg img{position:absolute;width:100%;height:106.64%;top:-3.32%;left:0;object-fit:cover}
@@ -146,7 +138,6 @@ img{display:block;max-width:100%}
 .hero-titles{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;opacity:0;animation:fadeInUp .8s ease .5s forwards}
 .hero-h1{font-family:var(--f1);font-weight:700;font-size:clamp(28px,4vw,56px);color:var(--c-w92);text-shadow:0 10px 40px rgba(0,0,0,.55);text-transform:uppercase;white-space:nowrap}
 .hero-hsub{font-family:var(--f1);font-weight:700;font-size:clamp(12px,1.5vw,22px);color:var(--c-w85);text-shadow:0 10px 30px rgba(0,0,0,.55);letter-spacing:.022px}
-.hero-hsub-mobile{display:none;font-family:var(--f1);font-weight:700;font-size:clamp(11px,3.2vw,16px);color:var(--c-w85);text-shadow:0 10px 30px rgba(0,0,0,.55);text-transform:uppercase;line-height:1.4;text-align:center}
 .hero-values{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;opacity:0;animation:fadeInUp .8s ease .9s forwards}
 .hero-row{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
 .hero-val{font-family:var(--f1);font-weight:400;font-size:clamp(22px,3vw,40px);color:var(--c-w92);text-shadow:0 10px 28px rgba(0,0,0,.6);text-transform:uppercase}
@@ -190,9 +181,6 @@ img{display:block;max-width:100%}
 .car-dots{display:flex;gap:5.6px;align-items:center}
 .cdot{width:23px;height:8px;background:var(--c-line);border-radius:24px;opacity:.2;cursor:pointer;transition:width .2s,height .2s,opacity .2s}
 .cdot.on{opacity:1;width:24px;height:14px}
-.car-dots-m{display:none;justify-content:center;margin-top:14px}
-.car-dots-m .cdot{width:8px;height:8px;border-radius:0}
-.car-dots-m .cdot.on{width:8px;height:8px;border-radius:0;opacity:1}
 .carousel{position:relative;width:100%;overflow:hidden;border-radius:2px}
 .c-track{display:flex;height:auto;transition:transform .55s cubic-bezier(.25,.46,.45,.94);will-change:transform}
 .c-slide{min-width:100%;position:relative;display:flex;gap:14px;align-items:flex-start;background:var(--c-bg)}
@@ -228,12 +216,6 @@ img{display:block;max-width:100%}
 .cmd-badge img{width:100%;height:100%;object-fit:contain;object-position:center;transform:scale(2)}
 .cmd-info{flex:1;display:flex;flex-direction:column;gap:35px;padding:0 30px 20px 40px;background:var(--c-bg)}
 .cmd-car-controls{display:none}
-.cmd-m-subtitle{display:none;font-family:var(--f1);font-weight:500;font-size:16px;color:var(--c-w85);margin-top:2px}
-.cmd-dots-m{display:none;gap:6px;align-items:center;flex-shrink:0}
-.cmd-dots-m .cdot{width:8px;height:8px;border-radius:0;background:#d9d9d9;opacity:.2;transition:opacity .3s}
-.cmd-dots-m .cdot.on{opacity:1}
-@keyframes subtitleIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
-.cmd-m-subtitle.subtitle-in{animation:subtitleIn .35s ease forwards}
 .cmd-rank{font-family:var(--f1);font-weight:400;font-size:clamp(14px,1.5vw,22px);color:var(--c-w85);letter-spacing:.022px}
 .cmd-name{font-family:var(--f1);font-weight:700;font-size:clamp(20px,2.2vw,34px);color:var(--c-w85);line-height:33px;text-transform:uppercase}
 .cmd-quote{background:#434343;padding:32px 10px 32px 32px;width:min(449px,100%)}
@@ -471,16 +453,11 @@ img{display:block;max-width:100%}
   .cmd-info{padding:20px 16px}
 }
 @media(max-width:767px){
-  .ticker-wrap{display:flex}
-  .hero-values{display:none}
-  .hero-hsub{display:none}
-  .hero-hsub-mobile{display:block;margin-top:16px;text-align:left}
   .hero-bg img{object-position:calc(50% + 80px) center}
   .hero-row:first-child{flex-wrap:nowrap;gap:10px}
   .hero-val{font-size:clamp(11px,3.2vw,22px)}
   .hero-seek{font-size:clamp(14px,4vw,22px)}
   .car-dots{display:none}
-  .car-dots-m{display:flex}
   .car-header{flex-wrap:nowrap;align-items:flex-start;gap:8px}
   .car-btn{width:40px;height:40px}
   .car-btn svg{width:16px;height:16px}
@@ -512,24 +489,7 @@ img{display:block;max-width:100%}
   .reel-thumb img{height:100%;object-fit:cover}
 
   .reel-caption{flex-shrink:0}
-  /* ── Commanders mobile ── */
-  .cmd-sec{padding:var(--py) 0;overflow:hidden}
-  .cmd-head{display:flex;justify-content:space-between;align-items:flex-start;padding:0 16px 16px}
-  .cmd-head-titles{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
-  .cmd-head-titles .sec-heading{text-box-trim:trim-start;text-box-edge:cap alphabetic;white-space:normal}
-  .cmd-m-subtitle{display:block;text-box-trim:trim-end;text-box-edge:cap alphabetic}
-  .cmd-dots-m{display:flex;align-self:flex-start;padding-top:4px;flex-shrink:0}
-  .cmd-car-controls{display:none}
-  .cmd-list{flex-direction:row;flex-wrap:nowrap;gap:0;transition:transform .45s cubic-bezier(.25,.46,.45,.94)}
-  .cmd-card{min-width:100%;width:100%;flex-direction:column;height:auto;opacity:1!important;transform:none!important;position:relative;padding-top:0}
-  .cmd-photo{width:100%;max-width:100%;height:330px}
-  .cmd-badge{top:20px;left:28px;width:72px;height:129px}
-  .cmd-info{padding:0 0 24px;flex-direction:column;gap:0;overflow:visible}
-  .cmd-rank{display:none}
-  .cmd-quote{order:-1;position:relative;z-index:5;margin:0 16px;padding:20px 12px 20px 20px;background:#d9d9d9;width:calc(100% - 32px)}
-  .cmd-quote p{color:#434343;opacity:.8;text-transform:uppercase;font-size:clamp(13px,3.5vw,16px);line-height:1.4}
-  .cmd-name{padding:20px 16px 0;font-size:clamp(16px,4.5vw,20px);line-height:1.35}
-  .cmd-bio{font-size:clamp(13px,3.5vw,15px);padding:8px 16px 0 30px;line-height:1.45}
+  /* ── Commanders carousel ── */
   /* ── Contacts ── */
   .contacts-head{flex-direction:column;align-items:stretch;gap:16px;padding-bottom:20px}
   .contacts-btn{width:100%;justify-content:center;height:52px;transform:none}
@@ -542,6 +502,16 @@ img{display:block;max-width:100%}
   .contacts-emblem{grid-row:1/3;grid-column:1;align-self:stretch;display:flex;align-items:center;padding-right:14px}
   .contacts-bn{grid-row:1;grid-column:2;align-self:end;font-size:clamp(14px,4vw,22px);padding-left:14px;margin-bottom:8px}
   .contacts-brig{grid-row:2;grid-column:2;align-self:start;font-size:clamp(10px,3vw,16px);padding-left:14px}
+  /* ── Commanders carousel ── */
+  .cmd-car-controls{display:flex;flex-shrink:0}
+  .cmd-sec{padding:0;height:100svh;height:100vh;overflow:hidden;flex-direction:column;box-sizing:border-box}
+  .cmd-head{display:flex;flex-direction:row;align-items:flex-start;justify-content:space-between;padding:var(--py) var(--px) 0;padding-bottom:12px;flex-shrink:0}
+  .cmd-head .sec-heading{margin-bottom:0;text-box-trim:trim-start;text-box-edge:cap alphabetic}
+  .cmd-list{flex:1;display:flex;flex-direction:row;gap:0;min-height:0;overflow:visible;transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
+  .cmd-card{min-width:100vw;width:100vw;height:100%;flex-shrink:0;flex-direction:column;opacity:1!important;transform:none!important;transition:none!important;box-sizing:border-box}
+  .cmd-photo{width:100%;max-width:100%;flex:0 0 50%;height:auto}
+  .cmd-photo img.bg{position:absolute;inset:0;width:100%;height:100%}
+  .cmd-info{flex:1;overflow-y:auto;padding:12px var(--px);gap:12px}
 }
 
 @media(min-width:1441px){
@@ -601,18 +571,6 @@ img{display:block;max-width:100%}
     </button>
   </div>
 </header>
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track">
-    <span class="ticker-item">БРАТЕРСТВО.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ПІДТРИМКА.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ШУКАЄМО СВОЇХ</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">БРАТЕРСТВО.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ПІДТРИМКА.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ШУКАЄМО СВОЇХ</span><span class="ticker-sep">·</span>
-  </div>
-</div>
 
 <div class="burger-overlay" id="burger-overlay" onclick="closeBurger()"></div>
 <nav class="burger-panel" id="burger-panel">
@@ -643,7 +601,6 @@ img{display:block;max-width:100%}
       <div class="hero-titles">
         <h1 class="hero-h1">4 МЕХАНІЗОВАНИЙ БАТАЛЬЙОН</h1>
         <p class="hero-hsub">ОКРЕМОЇ ПРЕЗИДЕНТСЬКОЇ БРИГАДИ ІМ. ГЕТЬМАНА БОГДАНА ХМЕЛЬНИЦЬКОГО</p>
-        <p class="hero-hsub-mobile">Окремої Президентської<br>Бригади ім. Гетьмана<br>Богдана Хмельницького</p>
       </div>
       <div class="hero-values">
         <div class="hero-row">
@@ -723,7 +680,6 @@ img{display:block;max-width:100%}
       </div>
     </div>
   </div>
-  <div class="car-dots car-dots-m" id="cs-dots-m"></div>
 </section>
 
 <div class="section-divider"></div>
@@ -787,7 +743,6 @@ img{display:block;max-width:100%}
       </div>
     </div>
   </div>
-  <div class="car-dots car-dots-m" id="cp-dots-m"></div>
 </section>
 
 <div class="section-divider"></div>
@@ -795,10 +750,7 @@ img{display:block;max-width:100%}
 <!-- ═══ COMMANDERS ════════════════════════════════════ -->
 <section class="cmd-sec" id="commanders">
   <div class="cmd-head reveal">
-    <div class="cmd-head-titles">
-      <h2 class="sec-heading">Наші командири</h2>
-      <p class="cmd-m-subtitle" id="cmd-subtitle">Командир батальйону</p>
-    </div>
+    <h2 class="sec-heading">Наші командири</h2>
     <div class="car-controls cmd-car-controls">
       <button class="car-btn prev off" id="cmd-prev" onclick="cmdMove(-1)" aria-label="Назад">
         <svg><use href="#icon-arrow"/></svg>
@@ -807,11 +759,10 @@ img{display:block;max-width:100%}
         <svg><use href="#icon-arrow"/></svg>
       </button>
     </div>
-    <div class="car-dots cmd-dots-m" id="cmd-dots-m"></div>
   </div>
   <div class="cmd-list" id="cmd-list">
 
-    <article class="cmd-card" data-rank="Командир батальйону">
+    <article class="cmd-card">
       <div class="cmd-photo">
         <div class="cmd-photo-overlay"></div>
         <img class="bg" src="assets/images/commanders/cmd-1.webp" alt="Командир батальйону" onerror="this.style.display='none'"/>
@@ -825,7 +776,7 @@ img{display:block;max-width:100%}
       </div>
     </article>
 
-    <article class="cmd-card" data-rank="Командир роти">
+    <article class="cmd-card">
       <div class="cmd-photo">
         <div class="cmd-photo-overlay"></div>
         <img class="bg" src="assets/images/commanders/cmd-2.webp" alt="Командир роти" onerror="this.style.display='none'"/>
@@ -839,7 +790,7 @@ img{display:block;max-width:100%}
       </div>
     </article>
 
-    <article class="cmd-card" data-rank="Головний сержант">
+    <article class="cmd-card">
       <div class="cmd-photo">
         <div class="cmd-photo-overlay"></div>
         <img class="bg" src="assets/images/commanders/cmd-3.webp" alt="Головний сержант" onerror="this.style.display='none'"/>
@@ -1157,30 +1108,23 @@ function splitMobileSlides(trackId){
     });
   });
 }
-function mkCarousel(trackId,dotsId,prevId,nextId,mDotsId){
+function mkCarousel(trackId,dotsId,prevId,nextId){
   let cur=0;
   const track=document.getElementById(trackId);
   const dotsEl=document.getElementById(dotsId);
-  const mDotsEl=mDotsId?document.getElementById(mDotsId):null;
   const prev=document.getElementById(prevId);
   const next=document.getElementById(nextId);
   const n=track.querySelectorAll('.c-slide').length;
-  [dotsEl,mDotsEl].forEach(el=>{
-    if(!el)return;
-    for(let i=0;i<n;i++){
-      const d=document.createElement('div');
-      d.className='cdot'+(i===0?' on':'');
-      d.onclick=()=>go(i);
-      el.appendChild(d);
-    }
-  });
+  for(let i=0;i<n;i++){
+    const d=document.createElement('div');
+    d.className='cdot'+(i===0?' on':'');
+    d.onclick=()=>go(i);
+    dotsEl.appendChild(d);
+  }
   function go(i){
     cur=Math.max(0,Math.min(n-1,i));
     track.style.transform=`translateX(-${cur*100}%)`;
-    [dotsEl,mDotsEl].forEach(el=>{
-      if(!el)return;
-      el.querySelectorAll('.cdot').forEach((d,k)=>d.classList.toggle('on',k===cur));
-    });
+    dotsEl.querySelectorAll('.cdot').forEach((d,k)=>d.classList.toggle('on',k===cur));
     prev.classList.toggle('off',cur===0);
     next.classList.toggle('off',cur===n-1);
   }
@@ -1188,8 +1132,8 @@ function mkCarousel(trackId,dotsId,prevId,nextId,mDotsId){
 }
 splitMobileSlides('cs-track');
 splitMobileSlides('cp-track');
-const csMove=mkCarousel('cs-track','cs-dots','cs-prev','cs-next','cs-dots-m');
-const cpMove=mkCarousel('cp-track','cp-dots','cp-prev','cp-next','cp-dots-m');
+const csMove=mkCarousel('cs-track','cs-dots','cs-prev','cs-next');
+const cpMove=mkCarousel('cp-track','cp-dots','cp-prev','cp-next');
 /* ── Commanders carousel (mobile only) ── */
 function mkCmdCarousel(){
   if(window.innerWidth>=768)return()=>{};
@@ -1199,23 +1143,11 @@ function mkCmdCarousel(){
   const n=cards.length;
   const prev=document.getElementById('cmd-prev');
   const next=document.getElementById('cmd-next');
-  const dotsEl=document.getElementById('cmd-dots-m');
-  const subtitle=document.getElementById('cmd-subtitle');
-  if(dotsEl){
-    for(let i=0;i<n;i++){
-      const d=document.createElement('div');
-      d.className='cdot'+(i===0?' on':'');
-      d.onclick=()=>go(i);
-      dotsEl.appendChild(d);
-    }
-  }
   function go(i){
     cur=Math.max(0,Math.min(n-1,i));
     list.style.transform=`translateX(-${cur*100}%)`;
     prev.classList.toggle('off',cur===0);
     next.classList.toggle('off',cur===n-1);
-    if(dotsEl)dotsEl.querySelectorAll('.cdot').forEach((d,k)=>d.classList.toggle('on',k===cur));
-    if(subtitle){subtitle.classList.remove('subtitle-in');void subtitle.offsetWidth;subtitle.textContent=cards[cur].dataset.rank||'';subtitle.classList.add('subtitle-in');}
   }
   go(0);
   return dir=>go(cur+dir);
@@ -1223,12 +1155,11 @@ function mkCmdCarousel(){
 const cmdMove=mkCmdCarousel();
 /* ── Swipe support ── */
 function addSwipe(el,moveFn){
-  let sx=0,sy=0;
-  el.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  let sx=0;
+  el.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
   el.addEventListener('touchend',e=>{
     const dx=e.changedTouches[0].clientX-sx;
-    const dy=e.changedTouches[0].clientY-sy;
-    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40)moveFn(dx<0?1:-1);
+    if(Math.abs(dx)>40)moveFn(dx<0?1:-1);
   },{passive:true});
 }
 /* ── Reels carousel (mobile only) ── */
@@ -1356,18 +1287,6 @@ function submitForm(){
   closeModal();
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeBurger()}});
-
-/* ── CMD QUOTE CENTERING ── */
-function updateCmdQuotes(){
-  if(window.innerWidth>=768)return;
-  document.querySelectorAll('.cmd-card').forEach(card=>{
-    const info=card.querySelector('.cmd-info');
-    const quote=card.querySelector('.cmd-quote');
-    if(info&&quote)info.style.marginTop=`-${quote.offsetHeight/2}px`;
-  });
-}
-updateCmdQuotes();
-window.addEventListener('resize',updateCmdQuotes);
 
 /* ── BURGER ── */
 const burgerBtn=document.getElementById('burger');

@@ -1276,12 +1276,20 @@ function mkCmdCarousel(){
 const cmdMove=mkCmdCarousel();
 /* ── Swipe support ── */
 function addSwipe(el,moveFn){
-  let sx=0,sy=0;
-  el.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  let sx=0,sy=0,dir=null;
+  el.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;dir=null;},{passive:true});
+  el.addEventListener('touchmove',e=>{
+    if(dir===null){
+      const dx=Math.abs(e.touches[0].clientX-sx);
+      const dy=Math.abs(e.touches[0].clientY-sy);
+      if(dx>5||dy>5)dir=dx>dy?'h':'v';
+    }
+    if(dir==='h')e.preventDefault();
+  },{passive:false});
   el.addEventListener('touchend',e=>{
     const dx=e.changedTouches[0].clientX-sx;
-    const dy=e.changedTouches[0].clientY-sy;
-    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40)moveFn(dx<0?1:-1);
+    if(dir==='h'&&Math.abs(dx)>40)moveFn(dx<0?1:-1);
+    dir=null;
   },{passive:true});
 }
 /* ── Reels carousel (mobile only) ── */

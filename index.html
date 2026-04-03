@@ -65,11 +65,11 @@ img{display:block;max-width:100%}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes arrowFade{0%,100%{background:#d9d9d9}50%{background:rgba(217,217,217,0.3)}}
 @keyframes slotUp{from{transform:translateY(100%)}to{transform:translateY(0%)}}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ticker{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 
 /* ─── TICKER ─────────────────────────────────────── */
 .ticker-wrap{display:none;position:fixed;top:70px;left:0;right:0;z-index:199;overflow:hidden;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--c-w06);height:34px;align-items:center}
-.ticker-track{display:flex;white-space:nowrap;animation:ticker 16s linear infinite}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 16s linear infinite;will-change:transform;backface-visibility:hidden}
 .ticker-item{font-family:var(--f1);font-weight:700;font-size:12px;color:var(--c-w92);text-transform:uppercase;letter-spacing:.06em;padding:0 20px}
 .ticker-sep{font-family:var(--f1);font-size:12px;color:rgba(255,255,255,.3);padding:0 4px}
 
@@ -645,13 +645,13 @@ img{display:block;max-width:100%}
 </header>
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">БРАТЕРСТВО.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ПІДТРИМКА.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">БРАТЕРСТВО</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ПІДТРИМКА</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ШУКАЄМО СВОЇХ</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">БРАТЕРСТВО.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ПІДТРИМКА.</span><span class="ticker-sep">·</span>
-    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ.</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">БРАТЕРСТВО</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ПІДТРИМКА</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">ВІДПОВІДАЛЬНІСТЬ</span><span class="ticker-sep">·</span>
     <span class="ticker-item">ШУКАЄМО СВОЇХ</span><span class="ticker-sep">·</span>
   </div>
 </div>
@@ -690,9 +690,9 @@ img{display:block;max-width:100%}
       </div>
       <div class="hero-values">
         <div class="hero-row">
-          <span class="hero-val">БРАТЕРСТВО.</span>
-          <span class="hero-val">ПІДТРИМКА.</span>
-          <span class="hero-val">ВІДПОВІДАЛЬНІСТЬ.</span>
+          <span class="hero-val">БРАТЕРСТВО</span>
+          <span class="hero-val">ПІДТРИМКА</span>
+          <span class="hero-val">ВІДПОВІДАЛЬНІСТЬ</span>
         </div>
         <div class="hero-row"><span class="hero-seek">ШУКАЄМО СВОЇХ</span></div>
       </div>
@@ -1170,7 +1170,13 @@ const hdr = document.getElementById('hdr');
 const sections = ['hero','combat-system','combat-path','commanders','reels','jobs','faq','contacts'];
 const navBtns = document.querySelectorAll('.nav-btn');
 
-function goTo(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}) }
+function goTo(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const vvh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  const elTop = el.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({top: Math.max(0, elTop - Math.round(vvh * 0.30)), behavior:'smooth'});
+}
 
 navBtns.forEach(b=>b.addEventListener('click',()=>goTo(b.dataset.target)));
 
@@ -1442,7 +1448,20 @@ function burgerNav(btn){goTo(btn.dataset.target)}
 (function(){
   const canvas=document.getElementById('sparks-canvas');
   const ctx=canvas.getContext('2d');
-  let particles=[],windParticles=[];
+  let particles=[],windParticles=[],time=0;
+
+  function turbulence(x,y,t){
+    const scale1=0.003,scale2=0.007,scale3=0.015;
+    const tx=
+      Math.sin(x*scale1+t*0.8)*Math.cos(y*scale1*0.7+t*0.5)*1.2+
+      Math.sin(x*scale2-t*1.1+y*scale2*0.5)*0.6+
+      Math.sin(x*scale3*0.9+y*scale3+t*1.6)*0.3;
+    const ty=
+      Math.cos(x*scale1*0.8+y*scale1+t*0.6)*1.2+
+      Math.cos(y*scale2*1.1-t*0.9+x*scale2*0.4)*0.6+
+      Math.cos(y*scale3+x*scale3*0.7-t*1.3)*0.3;
+    return{tx,ty};
+  }
 
   function setCanvasSize(){
     canvas.width=window.innerWidth;
@@ -1462,9 +1481,9 @@ function burgerNav(btn){goTo(btn.dataset.target)}
         this.maxLife=Math.random()*60+100;
         this.size=Math.random()*0.8+0.2;
       }else{
-        this.vx=(Math.random()-0.5)*(isExplosion?2:0.2);
-        this.vy=isExplosion?(Math.random()-0.5)*2:-(Math.random()*0.4+0.2);
-        this.maxLife=Math.random()*200+400;
+        this.vx=(Math.random()-0.5)*(isExplosion?2:0.4);
+        this.vy=isExplosion?(Math.random()-0.5)*2:-(Math.random()*1.2+0.8);
+        this.maxLife=Math.random()*300+700;
         this.size=Math.random()*0.5+0.1;
       }
       this.life=this.maxLife;
@@ -1473,8 +1492,10 @@ function burgerNav(btn){goTo(btn.dataset.target)}
     update(){
       this.wobble+=0.03;
       const wobbleFactor=this.isWind?0:Math.sin(this.wobble)*0.15;
-      this.x+=this.vx+wobbleFactor;
-      this.y+=this.vy;
+      const{tx,ty}=turbulence(this.x,this.y,time);
+      const turbStrength=this.isWind?0.35:0.55;
+      this.x+=this.vx+wobbleFactor+tx*turbStrength;
+      this.y+=this.vy+ty*turbStrength;
       this.life--;
     }
     draw(){
@@ -1516,7 +1537,7 @@ function burgerNav(btn){goTo(btn.dataset.target)}
     if(particles.length<50&&Math.random()>0.96){
       particles.push(new Particle(Math.random()*canvas.width,canvas.height+5));
     }
-    if(Math.random()>0.985)triggerWindGust();
+    if(Math.random()>0.9925)triggerWindGust();
     [particles,windParticles].forEach(group=>{
       for(let i=group.length-1;i>=0;i--){
         const p=group[i];
@@ -1524,6 +1545,7 @@ function burgerNav(btn){goTo(btn.dataset.target)}
         if(p.life<=0||p.x>canvas.width+50||p.y<-50)group.splice(i,1);
       }
     });
+    time+=0.012;
     ctx.globalCompositeOperation='source-over';
     requestAnimationFrame(animate);
   }

@@ -1175,7 +1175,7 @@ function goTo(id){
   if(!el) return;
   const vvh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
   const elTop = el.getBoundingClientRect().top + window.scrollY;
-  window.scrollTo({top: Math.max(0, elTop - Math.round(vvh * 0.30)), behavior:'smooth'});
+  window.scrollTo({top: Math.max(0, elTop - Math.round(vvh * 0.12)), behavior:'smooth'});
 }
 
 navBtns.forEach(b=>b.addEventListener('click',()=>goTo(b.dataset.target)));
@@ -1440,6 +1440,9 @@ function closeBurger(){
   burgerOverlayEl.classList.remove('open');
 }
 burgerBtn.addEventListener('click',()=>{burgerBtn.classList.contains('open')?closeBurger():openBurger()});
+document.addEventListener('click',e=>{
+  if(burgerPanel.classList.contains('open')&&!burgerPanel.contains(e.target)&&!burgerBtn.contains(e.target))closeBurger();
+});
 function burgerNav(btn){goTo(btn.dataset.target)}
 </script>
 

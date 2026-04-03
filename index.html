@@ -1443,7 +1443,17 @@ burgerBtn.addEventListener('click',()=>{burgerBtn.classList.contains('open')?clo
 document.addEventListener('click',e=>{
   if(burgerPanel.classList.contains('open')&&!burgerPanel.contains(e.target)&&!burgerBtn.contains(e.target))closeBurger();
 });
-function burgerNav(btn){goTo(btn.dataset.target)}
+let burgerNavScrollTimer=null;
+let burgerNavScrolling=false;
+window.addEventListener('scroll',()=>{
+  if(burgerPanel.classList.contains('open')&&!burgerNavScrolling)closeBurger();
+},{passive:true});
+function burgerNav(btn){
+  burgerNavScrolling=true;
+  clearTimeout(burgerNavScrollTimer);
+  burgerNavScrollTimer=setTimeout(()=>{burgerNavScrolling=false;},1000);
+  goTo(btn.dataset.target);
+}
 </script>
 
 <script>

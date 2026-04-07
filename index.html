@@ -509,7 +509,8 @@ img{display:block;max-width:100%}
   .ticker-wrap{display:flex}
   .hero-values{display:none}
   .hero-hsub{display:none}
-  .hero-hsub-mobile{display:block;margin-top:16px;text-align:left}
+  .hero-hsub-mobile{display:block;margin:16px 0 0;text-align:center}
+  .hero-content{padding-top:0;justify-content:center}
   .hero-bg img{object-position:calc(50% + 80px) center}
   .hero-row:first-child{flex-wrap:nowrap;gap:10px}
   .hero-val{font-size:clamp(11px,3.2vw,22px)}
@@ -549,7 +550,9 @@ img{display:block;max-width:100%}
 
   .reel-caption{flex-shrink:0}
   /* ── Results mobile ── */
-  .results-grid{display:grid;grid-template-columns:repeat(2,auto);gap:clamp(24px,6vw,40px) clamp(40px,10vw,72px);padding:clamp(28px,6vw,48px) 0 16px;justify-content:center}
+  .results-sec{padding:100px var(--px)}
+  .results-sec .sec-heading{text-align:center}
+  .results-grid{display:grid;grid-template-columns:repeat(2,auto);gap:40px clamp(40px,10vw,72px);padding:60px 0 0;justify-content:center}
   /* ── Commanders mobile ── */
   .cmd-sec{padding:var(--py) 0;overflow:hidden}
   .cmd-head{display:flex;justify-content:space-between;align-items:flex-start;padding:0 16px 16px}

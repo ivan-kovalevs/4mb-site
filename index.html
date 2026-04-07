@@ -260,7 +260,8 @@ img{display:block;max-width:100%}
 .reel-play svg{fill:white;width:32px;height:32px;margin-left:4px}
 .reel-card:hover .reel-play{opacity:0}
 .reel-caption{background:#000;padding:16px 18px;border-radius:0 0 6px 6px}
-.reel-caption p{font-family:var(--f1);font-weight:400;font-size:18px;color:var(--c-white);line-height:1.4}
+.reel-caption p{font-family:var(--f1);font-weight:400;font-size:18px;color:var(--c-white);line-height:1.4;margin:0}
+.reel-role{font-size:14px;color:rgba(255,255,255,.6);line-height:1.3;margin-top:3px}
 
 /* ─── JOBS ───────────────────────────────────────── */
 .jobs-sec{padding:0 var(--px) var(--py);border-top:1px solid var(--c-w06)}
@@ -488,7 +489,7 @@ img{display:block;max-width:100%}
   .reels-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
   .reel-card{width:100%}
   .reel-thumb{width:100%;height:auto;aspect-ratio:9/16}
-  .reel-caption p{font-size:14px}
+  .reel-name{font-size:14px}
   .jobs-grid{grid-template-columns:1fr}
   .job-card{height:300px}
   .faq-grid{grid-template-columns:1fr}
@@ -525,7 +526,7 @@ img{display:block;max-width:100%}
   .tl-name,.tl-date,.tl-continues{white-space:normal;line-height:1.35}
   .cp-sec .car-header .sec-heading{text-box-trim:trim-start;text-box-edge:cap alphabetic}
   .cp-sec .car-header{align-items:flex-start;margin-bottom:0}
-  .cp-sec .timeline{width:100%;margin-top:0}
+  .cp-sec .timeline{width:100%;margin-top:40px}
   .cp-sec .tl-items{display:flex;width:100%;gap:0;justify-content:space-between}
   .cp-sec .tl-item{flex:1;position:relative;height:76px}
   .cp-sec .tl-name{position:absolute;bottom:calc(50% + 8px);left:0;right:4px}
@@ -535,9 +536,9 @@ img{display:block;max-width:100%}
   .cp-sec .tl-line::before{display:block;left:68%;right:0;width:auto;background:linear-gradient(to right,transparent 0%,var(--c-line) 40%);animation:blink 2s ease-in-out infinite}
   .cp-sec .tl-line::after{right:-7px;top:50%;transform:translateY(-50%);width:7px;height:8px;border:none;background:var(--c-line);clip-path:polygon(0 0,100% 50%,0 100%);animation:blink 2s ease-in-out infinite}
   /* ── Combat System mobile ── */
-  .cs-sec{padding:100px var(--px) 50px}
+  .cs-sec{padding:50px var(--px) 50px}
   .cs-sec .car-header{margin-bottom:40px}
-  .cp-sec{padding-top:50px}
+  .cp-sec{padding-top:50px;padding-bottom:50px}
   /* ── Photo galleries — full-width carousel ── */
   .cs-sec .carousel,.cp-sec .carousel{margin-left:calc(-1*var(--px));margin-right:calc(-1*var(--px));width:calc(100% + 2*var(--px))}
   /* ── Reels carousel ── */
@@ -553,12 +554,14 @@ img{display:block;max-width:100%}
   .reel-thumb img{height:100%;object-fit:cover}
 
   .reel-caption{flex-shrink:0}
+  .reel-name{font-size:18px}
+  .reel-role{font-size:12px;line-height:1.27;margin-top:2px}
   /* ── Results mobile ── */
   .results-sec{padding:100px var(--px)}
   .results-sec .sec-heading{text-align:center}
   .results-grid{display:grid;grid-template-columns:repeat(2,auto);gap:40px clamp(40px,10vw,72px);padding:60px 0 0;justify-content:center}
   /* ── Commanders mobile ── */
-  .cmd-sec{padding:var(--py) 0;overflow:hidden}
+  .cmd-sec{padding:50px 0 var(--py);overflow:hidden}
   .cmd-head{display:flex;justify-content:space-between;align-items:flex-start;padding:0 16px 16px}
   .cmd-head-titles{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
   .cmd-head-titles .sec-heading{text-box-trim:trim-start;text-box-edge:cap alphabetic;white-space:normal}
@@ -574,7 +577,7 @@ img{display:block;max-width:100%}
   .cmd-quote{order:-1;position:relative;z-index:5;margin:0 16px;padding:20px 12px 20px 20px;background:#d9d9d9;width:calc(100% - 32px)}
   .cmd-quote p{color:#434343;opacity:.8;text-transform:uppercase;font-size:clamp(13px,3.5vw,16px);line-height:1.4}
   .cmd-name{padding:20px 16px 0;font-size:clamp(16px,4.5vw,20px);line-height:1.35}
-  .cmd-bio{font-size:clamp(13px,3.5vw,15px);padding:8px 16px 0 30px;line-height:1.45}
+  .cmd-bio{font-size:clamp(13px,3.5vw,15px);padding:8px 16px 0 16px;line-height:1.45}
   /* ── Contacts ── */
   .contacts-head{flex-direction:column;align-items:stretch;gap:16px;padding-bottom:20px}
   .contacts-btn{width:100%;justify-content:center;height:52px;transform:none}
@@ -936,7 +939,7 @@ img{display:block;max-width:100%}
         <iframe title="Відгук бійця 1" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
         <div class="reel-play"><svg><use href="#icon-play"/></svg></div>
       </div>
-      <div class="reel-caption"><p>Віктор "Вектор"<br/>Старший сержант,<br/>пілот БПЛА<br/>в баті з 2022 р.</p></div>
+      <div class="reel-caption"><p class="reel-name">Віктор "Вектор"</p><p class="reel-role">Старший сержант, пілот БПЛА в баті з 2022 р.</p></div>
     </div>
 
     <div class="reel-card" data-yt="dQw4w9WgXcQ">
@@ -945,7 +948,7 @@ img{display:block;max-width:100%}
         <iframe title="Відгук бійця 2" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
         <div class="reel-play"><svg><use href="#icon-play"/></svg></div>
       </div>
-      <div class="reel-caption"><p>Сергій "Сталь"<br/>Старший солдат,<br/>механік-водій<br/>в баті з 2022 р.</p></div>
+      <div class="reel-caption"><p class="reel-name">Сергій "Сталь"</p><p class="reel-role">Старший солдат, механік-водій в баті з 2022 р.</p></div>
     </div>
 
     <div class="reel-card" data-yt="dQw4w9WgXcQ">
@@ -954,7 +957,7 @@ img{display:block;max-width:100%}
         <iframe title="Відгук бійця 3" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
         <div class="reel-play"><svg><use href="#icon-play"/></svg></div>
       </div>
-      <div class="reel-caption"><p>Олег "Дрон"<br/>Старший сержант,<br/>оператор БПЛА<br/>в баті з 2023 р.</p></div>
+      <div class="reel-caption"><p class="reel-name">Олег "Дрон"</p><p class="reel-role">Старший сержант, оператор БПЛА в баті з 2023 р.</p></div>
     </div>
 
     <div class="reel-card" data-yt="dQw4w9WgXcQ">
@@ -963,7 +966,7 @@ img{display:block;max-width:100%}
         <iframe title="Відгук бійця 4" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
         <div class="reel-play"><svg><use href="#icon-play"/></svg></div>
       </div>
-      <div class="reel-caption"><p>Андрій "Грім"<br/>Молодший сержант,<br/>стрілець<br/>в баті з 2022 р.</p></div>
+      <div class="reel-caption"><p class="reel-name">Андрій "Грім"</p><p class="reel-role">Молодший сержант, стрілець в баті з 2022 р.</p></div>
     </div>
 
   </div>

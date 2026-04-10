@@ -759,7 +759,7 @@ img{display:block;max-width:100%}
         <svg><use href="#icon-arrow"/></svg>
       </button>
       <div class="car-dots" id="cs-dots"></div>
-      <button class="car-btn next" id="cs-next" onclick="csMove(1)" aria-label="Вперед">
+      <button class="car-btn next" id="cs-next" onclick="carouselEdgeBtn(csMove,'combat-system',1)" aria-label="Вперед">
         <svg><use href="#icon-arrow"/></svg>
       </button>
     </div>
@@ -797,7 +797,7 @@ img{display:block;max-width:100%}
         <svg><use href="#icon-arrow"/></svg>
       </button>
       <div class="car-dots" id="cp-dots"></div>
-      <button class="car-btn next" id="cp-next" onclick="cpMove(1)" aria-label="Вперед">
+      <button class="car-btn next" id="cp-next" onclick="carouselEdgeBtn(cpMove,'combat-path',1)" aria-label="Вперед">
         <svg><use href="#icon-arrow"/></svg>
       </button>
     </div>
@@ -863,7 +863,7 @@ img{display:block;max-width:100%}
       <button class="car-btn prev off" id="cmd-prev" onclick="cmdMove(-1)" aria-label="Назад">
         <svg><use href="#icon-arrow"/></svg>
       </button>
-      <button class="car-btn next" id="cmd-next" onclick="cmdMove(1)" aria-label="Вперед">
+      <button class="car-btn next" id="cmd-next" onclick="carouselEdgeBtn(cmdMove,'commanders',1)" aria-label="Вперед">
         <svg><use href="#icon-arrow"/></svg>
       </button>
     </div>
@@ -929,7 +929,7 @@ img{display:block;max-width:100%}
       <button class="car-btn prev off" id="rl-prev" onclick="rlMove(-1)" aria-label="Назад">
         <svg><use href="#icon-arrow"/></svg>
       </button>
-      <button class="car-btn next" id="rl-next" onclick="rlMove(1)" aria-label="Вперед">
+      <button class="car-btn next" id="rl-next" onclick="carouselEdgeBtn(rlMove,'reels',1)" aria-label="Вперед">
         <svg><use href="#icon-arrow"/></svg>
       </button>
     </div>
@@ -1362,6 +1362,11 @@ const rlMove=mkReelCarousel();
 /* ── Section navigation helper ── */
 const MOBILE_SECTIONS=['hero','results','combat-system','combat-path','commanders','reels','jobs','faq','contacts'];
 const SECTION_CAROUSELS={'combat-system':csMove,'combat-path':cpMove,'commanders':cmdMove,'reels':rlMove};
+function carouselEdgeBtn(moveFn,sectionId,dir){
+  if(window.innerWidth>=768){moveFn(dir);return;}
+  const moved=moveFn(dir);
+  if(!moved)mobileSecNav(sectionId,dir);
+}
 function mobileSecNav(fromId,dir){
   if(window.innerWidth>=768)return;
   setTimeout(()=>SECTION_CAROUSELS[fromId]?.reset?.(),500);

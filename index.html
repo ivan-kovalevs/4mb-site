@@ -1253,7 +1253,9 @@ function mkCarousel(trackId,dotsId,prevId,nextId,mDotsId){
     next.classList.toggle('off',cur===n-1);
     return true;
   }
-  return dir=>go(cur+dir);
+  const fn=dir=>go(cur+dir);
+  fn.reset=()=>{cur=-1;go(0)};
+  return fn;
 }
 splitMobileSlides('cs-track');
 splitMobileSlides('cp-track');
@@ -1293,7 +1295,9 @@ function mkCmdCarousel(){
     return didMove;
   }
   go(0);
-  return dir=>go(cur+dir);
+  const fn=dir=>go(cur+dir);
+  fn.reset=()=>{cur=-1;go(0)};
+  return fn;
 }
 const cmdMove=mkCmdCarousel();
 /* ── Swipe support ── */
@@ -1336,9 +1340,25 @@ function mkReelCarousel(){
     return true;
   }
   go(0);
-  return dir=>go(cur+dir);
+  const fn=dir=>go(cur+dir);
+  fn.reset=()=>{cur=-1;go(0)};
+  return fn;
 }
 const rlMove=mkReelCarousel();
+/* ── Reset carousels when section leaves viewport ── */
+(function(){
+  function watchReset(sectionId,moveFn){
+    const sec=document.getElementById(sectionId);
+    if(!sec||!moveFn.reset)return;
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(!e.isIntersecting)moveFn.reset()});
+    },{threshold:0}).observe(sec);
+  }
+  watchReset('combat-system',csMove);
+  watchReset('combat-path',cpMove);
+  watchReset('commanders',cmdMove);
+  watchReset('reels',rlMove);
+})();
 /* ── Section navigation helper ── */
 const MOBILE_SECTIONS=['hero','results','combat-system','combat-path','commanders','reels','jobs','faq','contacts'];
 function mobileSecNav(fromId,dir){

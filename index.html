@@ -1364,6 +1364,7 @@ const MOBILE_SECTIONS=['hero','results','combat-system','combat-path','commander
 const SECTION_CAROUSELS={'combat-system':csMove,'combat-path':cpMove,'commanders':cmdMove,'reels':rlMove};
 function mobileSecNav(fromId,dir){
   if(window.innerWidth>=768)return;
+  setTimeout(()=>SECTION_CAROUSELS[fromId]?.reset?.(),500);
   const i=MOBILE_SECTIONS.indexOf(fromId);
   const nextId=MOBILE_SECTIONS[i+dir];
   if(nextId)goTo(nextId);

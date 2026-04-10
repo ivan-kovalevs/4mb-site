@@ -580,7 +580,6 @@ img{display:block;max-width:100%}
   .cmd-bio{font-size:clamp(13px,3.5vw,15px);padding:8px 16px 0 16px;line-height:1.45}
   /* ── Contacts ── */
   .contacts-head{gap:20px;padding-top:0}
-  .contacts-sec{scroll-snap-align:none}
   .contacts-btn{width:100%;justify-content:center;height:52px;transform:none}
   .contacts-row{flex-direction:column;align-items:center;gap:32px}
   .contacts-phone-block{order:1;align-items:center;width:100%}
@@ -595,7 +594,7 @@ img{display:block;max-width:100%}
   .faq-q{min-height:51px;padding:11px 18px}
   /* ── Section snap scroll ── */
   html{scroll-snap-type:y proximity}
-  section{scroll-snap-align:start}
+  #hero,#combat-system,#combat-path,#commanders,#reels{scroll-snap-align:start}
 }
 
 @media(min-width:1441px){

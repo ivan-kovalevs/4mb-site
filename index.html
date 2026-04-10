@@ -160,9 +160,9 @@ img{display:block;max-width:100%}
 .friends-line2{transition-delay:.4s}
 
 /* ─── RESULTS ────────────────────────────────────── */
-.results-sec{padding:calc(var(--py)*2) var(--px) var(--py);display:flex;flex-direction:column;align-items:center}
+.results-sec{padding:100px var(--px);display:flex;flex-direction:column;align-items:center}
 .results-inner{width:min(1322px,100%)}
-.results-grid{display:flex;align-items:flex-end;justify-content:center;gap:clamp(20px,5vw,117px);padding:clamp(40px,8vw,194px) clamp(20px,4vw,72px) 23px;flex-wrap:wrap}
+.results-grid{display:flex;align-items:flex-end;justify-content:center;gap:clamp(20px,5vw,117px);padding:clamp(40px,6vw,80px) clamp(20px,4vw,72px) 0;flex-wrap:wrap}
 .stat{display:flex;flex-direction:column;align-items:center;gap:10px}
 .stat-label{font-family:var(--f1);font-weight:400;font-size:clamp(20px,2.5vw,40px);color:var(--c-w92);text-transform:uppercase;text-align:center;opacity:0;transition:opacity .4s ease}
 .stat-label.vis{opacity:1}
@@ -299,27 +299,21 @@ img{display:block;max-width:100%}
 /* ─── MODAL FORM ─────────────────────────────────── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
 .modal-overlay.open{display:flex}
-.modal-box{background:#1a1d26;border:1px solid var(--c-w06);border-radius:16px;padding:40px;width:560px;max-width:95vw;position:relative;animation:fadeInUp .3s ease}
-.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.1);font-size:18px;color:white;cursor:pointer;transition:background .2s}
-.modal-close:hover{background:rgba(255,255,255,.2)}
-.modal-title{font-family:var(--f1);font-weight:700;font-size:28px;color:var(--c-white);margin-bottom:8px}
-.modal-sub{font-family:var(--f1);font-size:16px;color:var(--c-w85);margin-bottom:28px}
-.form-group{margin-bottom:16px}
-.form-label{font-family:var(--f1);font-size:14px;color:var(--c-w85);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:1px}
-.form-input,.form-textarea{
-  width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;
-  padding:12px 16px;font-family:var(--f1);font-size:16px;color:var(--c-white);outline:none;
-  transition:border-color .2s;
-}
-.form-input:focus,.form-textarea:focus{border-color:rgba(255,255,255,.4)}
-.form-textarea{height:100px;resize:vertical}
-.form-submit{
-  width:100%;margin-top:8px;padding:14px;border-radius:8px;
-  background:white;color:#0b0c0f;
-  font-family:var(--f1);font-weight:700;font-size:18px;
-  cursor:pointer;transition:opacity .2s;
-}
-.form-submit:hover{opacity:.85}
+.modal-box{background:#fff;border-radius:16px;padding:40px;width:600px;max-width:95vw;max-height:90vh;overflow-y:auto;position:relative;animation:fadeInUp .3s ease}
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(0,0,0,.08);font-size:18px;color:#000;cursor:pointer;transition:background .2s}
+.modal-close:hover{background:rgba(0,0,0,.15)}
+.modal-title{font-family:var(--f1);font-weight:700;font-size:28px;color:#000;margin-bottom:20px}
+.modal-sub{font-family:var(--f1);font-size:15px;color:rgba(0,0,0,.5);margin-bottom:40px}
+.modal-reqs{margin-bottom:40px}
+.modal-reqs-label{font-family:var(--f1);font-weight:700;font-size:16px;color:#000;margin-bottom:20px}
+.modal-reqs-list{list-style:none;display:flex;flex-direction:column;gap:20px}
+.modal-reqs-list li{font-family:var(--f1);font-size:15px;color:#000;line-height:1.5;padding-left:16px;position:relative}
+.modal-reqs-list li::before{content:'•';position:absolute;left:0;color:#000}
+.modal-footer{display:flex;flex-direction:column;gap:0}
+.modal-anketa-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:44px;padding:0 16px;background:#D8ED8C;border-radius:6px;font-family:var(--f1);font-weight:700;font-size:22px;color:#000;text-decoration:none;cursor:pointer;transition:opacity .2s;line-height:1;white-space:nowrap;box-sizing:border-box}
+.modal-anketa-btn:hover{opacity:.85}
+.modal-anketa-hint{font-family:var(--f1);font-size:13px;color:rgba(0,0,0,.45);margin-top:20px;display:block;text-align:center}
+.contacts-anketa-hint{font-family:var(--f1);font-size:13px;color:rgba(255,255,255,.45);display:block;text-align:center;margin-bottom:40px}
 
 /* ─── FAQ ────────────────────────────────────────── */
 .faq-sec{padding:0 var(--px) var(--py)}
@@ -355,7 +349,7 @@ img{display:block;max-width:100%}
 .faq-answer p{font-family:var(--f1);font-weight:400;font-size:clamp(15px,1.5vw,22px);color:var(--c-w85);line-height:1.49;letter-spacing:.022px}
 
 /* ─── CONTACTS ───────────────────────────────────── */
-.contacts-sec{padding:0 var(--px) var(--py);border-top:1px solid var(--c-w06)}
+.contacts-sec{padding:calc(var(--py)*2) var(--px);border-top:1px solid var(--c-w06)}
 .contacts-row{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between}
 .contacts-id{display:flex;align-items:center;gap:26px;flex-shrink:0}
 .contacts-emblem{width:64px;height:111px;flex-shrink:0;padding:6px;box-sizing:content-box;display:flex;align-items:center;justify-content:center}
@@ -363,16 +357,16 @@ img{display:block;max-width:100%}
 .contacts-bn{font-family:var(--f1);font-weight:700;font-size:clamp(18px,2.2vw,36px);color:var(--c-white);line-height:1.28;text-transform:uppercase;text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-brig{font-family:var(--f1);font-weight:700;font-size:clamp(11px,1.26vw,20px);color:var(--c-w85);line-height:1.4;text-transform:uppercase;flex-shrink:0;text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-left-block{display:contents}
-.contacts-phone-block{display:flex;flex-direction:column;gap:11px;flex-shrink:0;align-items:flex-end}
+.contacts-phone-block{display:flex;flex-direction:column;gap:20px;flex-shrink:0;align-items:flex-end}
 .contacts-phone{font-family:var(--f1);font-weight:700;font-size:clamp(22px,2.8vw,40px);color:var(--c-white);text-decoration:underline;display:block;transition:opacity .2s;line-height:1;text-box-trim:trim-both;text-box-edge:cap alphabetic;transform:translateY(-5px)}
 .contacts-phone:hover{opacity:.8}
-.contacts-recruiter-label{font-family:var(--f1);font-weight:700;font-size:clamp(14px,1.2vw,22px);color:var(--c-white);text-transform:capitalize;line-height:1;text-box-trim:trim-both;text-box-edge:cap alphabetic;transform:translateY(5px)}
+.contacts-recruiter-label{font-family:var(--f1);font-weight:700;font-size:var(--h2);color:var(--c-white);text-transform:capitalize;line-height:56px;white-space:nowrap;text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-btn{
   display:inline-flex;align-items:center;gap:10px;
   height:44px;flex-shrink:0;transform:translateY(3px);
-  background:#f84759;border-radius:6px;
+  background:#D8ED8C;border-radius:6px;
   padding:0 16px;
-  font-family:var(--f1);font-weight:700;font-size:22px;color:var(--c-white);
+  font-family:var(--f1);font-weight:700;font-size:22px;color:#000;
   text-decoration:none;cursor:pointer;
   transition:opacity .2s;
   line-height:1;white-space:nowrap;
@@ -380,7 +374,7 @@ img{display:block;max-width:100%}
 .contacts-btn-text{text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-btn:hover{opacity:.85}
 .contacts-btn-arrow{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;margin-top:4px}
-.contacts-head{padding:var(--py) 0 30px;display:flex;align-items:center;justify-content:space-between}
+.contacts-head{padding:var(--py) 0 0;display:flex;flex-direction:column;align-items:center;gap:20px}
 
 /* ─── REVEAL UTIL ────────────────────────────────── */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s,transform .7s}
@@ -563,7 +557,7 @@ img{display:block;max-width:100%}
   .reel-name{font-size:18px}
   .reel-caption .reel-role{font-size:12px;line-height:1.27;margin-top:2px}
   /* ── Results mobile ── */
-  .results-sec{padding:calc(var(--py)*2) var(--px) 100px}
+  .results-sec{padding:100px var(--px)}
   .results-sec .sec-heading{text-align:center}
   .results-grid{display:grid;grid-template-columns:repeat(2,auto);gap:40px clamp(40px,10vw,72px);padding:60px 0 0;justify-content:center}
   /* ── Commanders mobile ── */
@@ -585,12 +579,13 @@ img{display:block;max-width:100%}
   .cmd-name{padding:20px 16px 0;font-size:clamp(16px,4.5vw,20px);line-height:1.35}
   .cmd-bio{font-size:clamp(13px,3.5vw,15px);padding:8px 16px 0 16px;line-height:1.45}
   /* ── Contacts ── */
-  .contacts-head{flex-direction:column;align-items:stretch;gap:16px;padding-bottom:20px}
+  .contacts-head{gap:20px;padding-top:0}
   .contacts-btn{width:100%;justify-content:center;height:52px;transform:none}
   .contacts-row{flex-direction:column;align-items:center;gap:32px}
   .contacts-phone-block{order:1;align-items:center;width:100%}
   .contacts-phone{text-align:center;transform:none}
-  .contacts-recruiter-label{text-align:center;transform:none}
+  .contacts-recruiter-label{text-align:center}
+  .contacts-head .sec-heading{display:none}
   .contacts-left-block{order:2;display:grid;grid-template-columns:auto auto;grid-template-rows:1fr 1fr;min-height:111px;gap:6px 0}
   .contacts-id{display:contents}
   .contacts-emblem{grid-row:1/3;grid-column:1;align-self:stretch;display:flex;align-items:center;padding-right:14px}
@@ -684,7 +679,8 @@ img{display:block;max-width:100%}
   <button class="nav-btn" data-target="reels" onclick="burgerNav(this)">Відгуки</button>
   <button class="nav-btn" data-target="jobs" onclick="burgerNav(this)">Вакансії</button>
   <button class="nav-btn" data-target="faq" onclick="burgerNav(this)">Часті питання</button>
-  <button class="burger-anketa" onclick="openModal('Заповнити анкету');closeBurger()">Заповнити анкету</button>
+  <button class="nav-btn" data-target="contacts" onclick="burgerNav(this)">Контакти</button>
+  <a class="burger-anketa" href="https://docs.google.com/forms/d/e/1FAIpQLSfHg2sZnMqhGoxNpmAdlV3ILjPb3WZCs1kbIeME6m4rlWDGbg/viewform" target="_blank" rel="noopener" onclick="closeBurger()">Заповнити анкету</a>
   <div class="burger-social">
     <a class="social-btn" href="https://t.me/Ci4team_4mb" target="_blank" rel="noopener" aria-label="Telegram"><img src="assets/images/ui/telegram.svg" alt="Telegram"/></a>
     <a class="social-btn" href="https://www.facebook.com/share/1DgpZukTEL/" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/images/ui/facebook.svg" alt="Facebook"/></a>
@@ -725,10 +721,6 @@ img{display:block;max-width:100%}
 
 <!-- ═══ RESULTS ══════════════════════════════════════ -->
 <section class="results-sec" id="results">
-  <div class="friends-heading">
-    <span class="friends-line reveal">ТВОЇ майбутні друзі</span>
-    <span class="friends-line friends-line2 reveal">вже тут</span>
-  </div>
   <div class="results-inner">
     <div class="reveal"><h2 class="sec-heading">Наші результати</h2></div>
     <div class="results-grid" id="results-grid">
@@ -1126,17 +1118,22 @@ img{display:block;max-width:100%}
 <!-- ═══ CONTACTS ════════════════════════════════════════ -->
 <div class="section-divider"></div>
 <section class="contacts-sec" id="contacts">
+  <div class="friends-heading">
+    <span class="friends-line reveal">ТВОЇ майбутні друзі</span>
+    <span class="friends-line friends-line2 reveal">вже тут</span>
+  </div>
   <div class="contacts-head reveal">
     <h2 class="sec-heading">Контакти</h2>
-    <a class="contacts-btn" href="#" onclick="openModal('Заповнити анкету');return false;">
+    <a class="contacts-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfHg2sZnMqhGoxNpmAdlV3ILjPb3WZCs1kbIeME6m4rlWDGbg/viewform" target="_blank" rel="noopener">
       <span class="contacts-btn-text">Заповнити анкету</span>
       <span class="contacts-btn-arrow">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="2" y1="14" x2="13" y2="3" stroke="white" stroke-width="2.5" stroke-linecap="butt"/>
-          <polyline points="7,3 13,3 13,9" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <line x1="2" y1="14" x2="13" y2="3" stroke="black" stroke-width="2.5" stroke-linecap="butt"/>
+          <polyline points="7,3 13,3 13,9" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="miter"/>
         </svg>
       </span>
     </a>
+    <span class="contacts-anketa-hint">Анкета відкриється в Google Forms.</span>
   </div>
   <div class="contacts-row reveal">
 
@@ -1170,21 +1167,19 @@ img{display:block;max-width:100%}
 <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-title" id="modal-title">Вакансія</div>
-    <div class="modal-sub">Заповніть форму — ми зв'яжемося з вами найближчим часом</div>
-    <div class="form-group">
-      <label class="form-label">Ім'я та прізвище</label>
-      <input class="form-input" type="text" placeholder="Іван Петренко"/>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub" id="modal-sub"></div>
+    <div class="modal-reqs">
+      <div class="modal-reqs-label">Вимоги</div>
+      <ul class="modal-reqs-list" id="modal-reqs-list"></ul>
     </div>
-    <div class="form-group">
-      <label class="form-label">Телефон</label>
-      <input class="form-input" type="tel" placeholder="+380 00 000 00 00"/>
+    <div class="modal-footer">
+      <a class="modal-anketa-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfHg2sZnMqhGoxNpmAdlV3ILjPb3WZCs1kbIeME6m4rlWDGbg/viewform" target="_blank" rel="noopener" onclick="closeModal()">
+        <span class="contacts-btn-text">Заповнити анкету</span>
+        <span class="contacts-btn-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="2" y1="14" x2="13" y2="3" stroke="black" stroke-width="2.5" stroke-linecap="butt"/><polyline points="7,3 13,3 13,9" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>
+      </a>
+      <span class="modal-anketa-hint">Анкета відкриється в Google Forms.</span>
     </div>
-    <div class="form-group">
-      <label class="form-label">Коментар</label>
-      <textarea class="form-textarea" placeholder="Досвід, запитання..."></textarea>
-    </div>
-    <button class="form-submit" onclick="submitForm()">Надіслати анкету</button>
   </div>
 </div>
 
@@ -1480,8 +1475,30 @@ function toggleFaq(item){
 }
 
 /* ── MODAL ── */
-function openModal(title){
-  document.getElementById('modal-title').textContent=title;
+const JOBS={
+  'Оператор розвідувальних БПЛА':{
+    sub:'Розвідувальний взвод',
+    reqs:['Практичний досвід керування DJI Mavic або аналогічними БПЛА (обов\'язково)','Уміння працювати з картою, координатами та орієнтуванням на місцевості','Висока уважність до деталей (пошук цілей, аналіз зображення)','Розуміння принципів радіозв\'язку та протидії РЕБ — перевага','Готовність до служби в зоні бойових дій']
+  },
+  'Водій':{
+    sub:'Рота безпілотних авіаційних комплексів',
+    reqs:['Водійське посвідчення відповідної категорії та впевнений досвід керування в складних умовах (обов\'язково)','Досвід водіння по бездоріжжю, вночі, під обмеженою видимістю','Базові навички ремонту та технічного обслуговування авто','Вміння швидко приймати рішення під час обстрілу або загрози','Готовність до служби в зоні бойових дій']
+  },
+  'Оператор НРК':{
+    sub:'Рота безпілотних авіаційних комплексів',
+    reqs:['Практичний досвід керування НРК або дистанційною технікою (обов\'язково)','Розуміння принципів роботи відеоканалів, радіозв\'язку та протидії РЕБ','Просторове мислення та вміння орієнтуватися на місцевості','Холодна реакція при втраті сигналу або вогневому контакті','Готовність до служби в зоні бойових дій']
+  },
+  'Стрілець':{
+    sub:'Механізована рота',
+    reqs:['Придатність до військової служби та належна фізична витривалість','Готовність працювати в обороні та штурмових діях','Дисципліна та безумовне виконання наказів','Стресостійкість і здатність діяти під вогнем','Готовність до служби в зоні бойових дій']
+  }
+};
+function openModal(key){
+  const job=JOBS[key];
+  if(!job)return;
+  document.getElementById('modal-title').textContent=key;
+  document.getElementById('modal-sub').textContent=job.sub;
+  document.getElementById('modal-reqs-list').innerHTML=job.reqs.map(r=>`<li>${r}</li>`).join('');
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -1490,10 +1507,6 @@ function closeModal(){
   document.body.style.overflow='';
 }
 function closeModalOutside(e){if(e.target===document.getElementById('modal'))closeModal()}
-function submitForm(){
-  alert('Дякуємо! Ми зв\'яжемося з вами найближчим часом. Слава Україні!');
-  closeModal();
-}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeBurger()}});
 
 /* ── CMD QUOTE CENTERING ── */

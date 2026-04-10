@@ -299,7 +299,14 @@ img{display:block;max-width:100%}
 /* ─── MODAL FORM ─────────────────────────────────── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
 .modal-overlay.open{display:flex}
-.modal-box{background:#fff;border-radius:16px;padding:40px;width:600px;max-width:95vw;max-height:90vh;overflow-y:auto;position:relative;animation:fadeInUp .3s ease}
+.modal-box{background:#fff;border-radius:16px;padding:40px;width:600px;max-width:95vw;max-height:90vh;overflow-y:auto;position:relative;animation:fadeInUp .3s ease;-webkit-overflow-scrolling:touch}
+@media(max-width:767px){
+  .modal-box{width:90vw;max-width:90vw;border-radius:16px;padding:24px 20px 32px;max-height:none;overflow-y:visible}
+  .modal-reqs-list{gap:12px}
+  .modal-reqs{margin-bottom:24px}
+  .modal-sub{margin-bottom:24px}
+  .modal-title{margin-bottom:12px}
+}
 .modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(0,0,0,.08);font-size:18px;color:#000;cursor:pointer;transition:background .2s}
 .modal-close:hover{background:rgba(0,0,0,.15)}
 .modal-title{font-family:var(--f1);font-weight:700;font-size:clamp(18px,5vw,28px);color:#000;margin-bottom:20px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -1493,6 +1500,7 @@ const JOBS={
     reqs:['Придатність до військової служби та належна фізична витривалість','Готовність працювати в обороні та штурмових діях','Дисципліна та безумовне виконання наказів','Стресостійкість і здатність діяти під вогнем','Готовність до служби в зоні бойових дій']
   }
 };
+let _modalScrollY=0;
 function openModal(key){
   const job=JOBS[key];
   if(!job)return;
@@ -1500,11 +1508,19 @@ function openModal(key){
   document.getElementById('modal-sub').textContent=job.sub;
   document.getElementById('modal-reqs-list').innerHTML=job.reqs.map(r=>`<li>${r}</li>`).join('');
   document.getElementById('modal').classList.add('open');
+  _modalScrollY=window.scrollY;
   document.body.style.overflow='hidden';
+  document.body.style.position='fixed';
+  document.body.style.top=`-${_modalScrollY}px`;
+  document.body.style.width='100%';
 }
 function closeModal(){
   document.getElementById('modal').classList.remove('open');
+  document.body.style.position='';
+  document.body.style.top='';
   document.body.style.overflow='';
+  document.body.style.width='';
+  window.scrollTo(0,_modalScrollY);
 }
 function closeModalOutside(e){if(e.target===document.getElementById('modal'))closeModal()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeBurger()}});

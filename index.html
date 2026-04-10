@@ -1361,8 +1361,11 @@ const rlMove=mkReelCarousel();
 })();
 /* ── Section navigation helper ── */
 const MOBILE_SECTIONS=['hero','results','combat-system','combat-path','commanders','reels','jobs','faq','contacts'];
+const SECTION_CAROUSELS={'combat-system':csMove,'combat-path':cpMove,'commanders':cmdMove,'reels':rlMove};
 function mobileSecNav(fromId,dir){
   if(window.innerWidth>=768)return;
+  // Reset the carousel we're leaving immediately (don't wait for IntersectionObserver)
+  SECTION_CAROUSELS[fromId]?.reset?.();
   const i=MOBILE_SECTIONS.indexOf(fromId);
   const nextId=MOBILE_SECTIONS[i+dir];
   if(nextId)goTo(nextId);

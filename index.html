@@ -235,7 +235,7 @@ img{display:block;max-width:100%}
 .cmd-dots-m{display:none;gap:6px;align-items:center;flex-shrink:0}
 .cmd-dots-m .cdot{width:8px;height:8px;border-radius:0;background:#d9d9d9;opacity:.2;transition:opacity .3s}
 .cmd-dots-m .cdot.on{opacity:1}
-@keyframes subtitleIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes subtitleIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
 .cmd-m-subtitle.subtitle-in{animation:subtitleIn .35s ease forwards}
 .cmd-rank{font-family:var(--f1);font-weight:400;font-size:clamp(14px,1.5vw,22px);color:var(--c-w85);letter-spacing:.022px}
 .cmd-name{font-family:var(--f1);font-weight:700;font-size:clamp(20px,2.2vw,34px);color:var(--c-w85);line-height:33px;text-transform:uppercase}
@@ -261,7 +261,7 @@ img{display:block;max-width:100%}
 .reel-card:hover .reel-play{opacity:0}
 .reel-caption{background:#000;padding:16px 18px;border-radius:0 0 6px 6px}
 .reel-caption p{font-family:var(--f1);font-weight:400;font-size:18px;color:var(--c-white);line-height:1.4;margin:0}
-.reel-role{font-size:14px;color:rgba(255,255,255,.6);line-height:1.3;margin-top:3px}
+.reel-caption .reel-role{font-size:14px;color:rgba(255,255,255,.6);line-height:1.3;margin-top:3px}
 
 /* ─── JOBS ───────────────────────────────────────── */
 .jobs-sec{padding:0 var(--px) var(--py);border-top:1px solid var(--c-w06)}
@@ -526,7 +526,7 @@ img{display:block;max-width:100%}
   .tl-name,.tl-date,.tl-continues{white-space:normal;line-height:1.35}
   .cp-sec .car-header .sec-heading{text-box-trim:trim-start;text-box-edge:cap alphabetic}
   .cp-sec .car-header{align-items:flex-start;margin-bottom:0}
-  .cp-sec .timeline{width:100%;margin-top:40px}
+  .cp-sec .timeline{width:100%;margin-top:20px}
   .cp-sec .tl-items{display:flex;width:100%;gap:0;justify-content:space-between}
   .cp-sec .tl-item{flex:1;position:relative;height:76px}
   .cp-sec .tl-name{position:absolute;bottom:calc(50% + 8px);left:0;right:4px}
@@ -545,8 +545,8 @@ img{display:block;max-width:100%}
   .rl-car-controls{display:flex;flex-shrink:0}
   .rl-subtitle{display:block}
   .rl-title-ext{display:none}
-  .reels-sec{padding:0;overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box}
-  .rl-head{display:flex;flex-direction:row;align-items:flex-start;justify-content:space-between;padding:var(--py) var(--px) 12px;flex-shrink:0}
+  .reels-sec{padding:20px 0 30px;overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box}
+  .rl-head{display:flex;flex-direction:row;align-items:flex-start;justify-content:space-between;padding:var(--py) var(--px) 30px;flex-shrink:0}
   .rl-head .car-title-block{flex:1;min-width:0}
   .reels-grid{display:flex;flex-direction:row;flex-wrap:nowrap;gap:0;transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
   .reel-card{min-width:100vw;width:100vw;height:auto;flex-shrink:0;opacity:1!important;transform:none!important;display:flex;flex-direction:column;box-sizing:border-box;padding:0 var(--px)}
@@ -555,7 +555,7 @@ img{display:block;max-width:100%}
 
   .reel-caption{flex-shrink:0}
   .reel-name{font-size:18px}
-  .reel-role{font-size:12px;line-height:1.27;margin-top:2px}
+  .reel-caption .reel-role{font-size:12px;line-height:1.27;margin-top:2px}
   /* ── Results mobile ── */
   .results-sec{padding:100px var(--px)}
   .results-sec .sec-heading{text-align:center}
@@ -591,6 +591,9 @@ img{display:block;max-width:100%}
   .contacts-bn{grid-row:1;grid-column:2;align-self:end;font-size:clamp(14px,4vw,22px);padding-left:14px;margin-bottom:8px}
   .contacts-brig{grid-row:2;grid-column:2;align-self:start;font-size:clamp(10px,3vw,16px);padding-left:14px}
   .faq-q{min-height:51px;padding:11px 18px}
+  /* ── Section snap scroll ── */
+  html{scroll-snap-type:y proximity}
+  section{scroll-snap-align:start}
 }
 
 @media(min-width:1441px){
@@ -736,7 +739,7 @@ img{display:block;max-width:100%}
       <div class="stat">
         <span class="stat-label">АВТОТЕХНІКА</span>
         <span class="stat-destroyed">знищено</span>
-        <div class="stat-num" style="overflow:hidden;height:1.2em"><span class="stat-inf">∞</span></div>
+        <div class="stat-num" style="overflow:hidden;height:1.2em;align-items:center"><span class="stat-inf">∞</span></div>
       </div>
     </div>
   </div>
@@ -1238,7 +1241,9 @@ function mkCarousel(trackId,dotsId,prevId,nextId,mDotsId){
     }
   });
   function go(i){
-    cur=Math.max(0,Math.min(n-1,i));
+    const newCur=Math.max(0,Math.min(n-1,i));
+    if(newCur===cur)return false;
+    cur=newCur;
     track.style.transform=`translateX(-${cur*100}%)`;
     [dotsEl,mDotsEl].forEach(el=>{
       if(!el)return;
@@ -1246,6 +1251,7 @@ function mkCarousel(trackId,dotsId,prevId,nextId,mDotsId){
     });
     prev.classList.toggle('off',cur===0);
     next.classList.toggle('off',cur===n-1);
+    return true;
   }
   return dir=>go(cur+dir);
 }
@@ -1273,19 +1279,25 @@ function mkCmdCarousel(){
     }
   }
   function go(i){
-    cur=Math.max(0,Math.min(n-1,i));
+    const newCur=Math.max(0,Math.min(n-1,i));
+    const didMove=newCur!==cur;
+    cur=newCur;
     list.style.transform=`translateX(-${cur*100}%)`;
     prev.classList.toggle('off',cur===0);
     next.classList.toggle('off',cur===n-1);
     if(dotsEl)dotsEl.querySelectorAll('.cdot').forEach((d,k)=>d.classList.toggle('on',k===cur));
-    if(subtitle){subtitle.classList.remove('subtitle-in');void subtitle.offsetWidth;subtitle.textContent=cards[cur].dataset.rank||'';subtitle.classList.add('subtitle-in');}
+    if(subtitle){
+      if(didMove){subtitle.classList.remove('subtitle-in');void subtitle.offsetWidth;subtitle.textContent=cards[cur].dataset.rank||'';subtitle.classList.add('subtitle-in');}
+      else{subtitle.textContent=cards[cur].dataset.rank||'';}
+    }
+    return didMove;
   }
   go(0);
   return dir=>go(cur+dir);
 }
 const cmdMove=mkCmdCarousel();
 /* ── Swipe support ── */
-function addSwipe(el,moveFn){
+function addSwipe(el,moveFn,onEdge){
   let sx=0,sy=0,dir=null;
   el.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;dir=null;},{passive:true});
   el.addEventListener('touchmove',e=>{
@@ -1298,7 +1310,11 @@ function addSwipe(el,moveFn){
   },{passive:false});
   el.addEventListener('touchend',e=>{
     const dx=e.changedTouches[0].clientX-sx;
-    if(dir==='h'&&Math.abs(dx)>40)moveFn(dx<0?1:-1);
+    if(dir==='h'&&Math.abs(dx)>40){
+      const d=dx<0?1:-1;
+      const moved=moveFn(d);
+      if(!moved&&onEdge)onEdge(d);
+    }
     dir=null;
   },{passive:true});
 }
@@ -1311,19 +1327,30 @@ function mkReelCarousel(){
   const prev=document.getElementById('rl-prev');
   const next=document.getElementById('rl-next');
   function go(i){
-    cur=Math.max(0,Math.min(n-1,i));
+    const newCur=Math.max(0,Math.min(n-1,i));
+    if(newCur===cur)return false;
+    cur=newCur;
     grid.style.transform=`translateX(-${cur*100}%)`;
     prev.classList.toggle('off',cur===0);
     next.classList.toggle('off',cur===n-1);
+    return true;
   }
   go(0);
   return dir=>go(cur+dir);
 }
 const rlMove=mkReelCarousel();
-addSwipe(document.getElementById('reels'),rlMove);
-addSwipe(document.querySelector('#cs-track').closest('.carousel'),csMove);
-addSwipe(document.querySelector('#cp-track').closest('.carousel'),cpMove);
-addSwipe(document.getElementById('cmd-list'),cmdMove);
+/* ── Section navigation helper ── */
+const MOBILE_SECTIONS=['hero','results','combat-system','combat-path','commanders','reels','jobs','faq','contacts'];
+function mobileSecNav(fromId,dir){
+  if(window.innerWidth>=768)return;
+  const i=MOBILE_SECTIONS.indexOf(fromId);
+  const nextId=MOBILE_SECTIONS[i+dir];
+  if(nextId)goTo(nextId);
+}
+addSwipe(document.getElementById('reels'),rlMove,d=>mobileSecNav('reels',d));
+addSwipe(document.querySelector('#cs-track').closest('.carousel'),csMove,d=>mobileSecNav('combat-system',d));
+addSwipe(document.querySelector('#cp-track').closest('.carousel'),cpMove,d=>mobileSecNav('combat-path',d));
+addSwipe(document.getElementById('cmd-list'),cmdMove,d=>mobileSecNav('commanders',d));
 
 /* ── RESULTS COUNTER ANIMATION ── */
 function animateResults(){

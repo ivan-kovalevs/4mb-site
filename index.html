@@ -364,10 +364,11 @@ img{display:block;max-width:100%}
 .contacts-bn{font-family:var(--f1);font-weight:700;font-size:clamp(18px,2.2vw,36px);color:var(--c-white);line-height:1.28;text-transform:uppercase;text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-brig{font-family:var(--f1);font-weight:700;font-size:clamp(11px,1.26vw,20px);color:var(--c-w85);line-height:1.4;text-transform:uppercase;flex-shrink:0;text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-left-block{display:contents}
-.contacts-phone-block{display:flex;flex-direction:column;gap:20px;flex-shrink:0;align-items:flex-end}
-.contacts-phone{font-family:var(--f1);font-weight:700;font-size:clamp(22px,2.8vw,40px);color:var(--c-white);text-decoration:underline;display:block;transition:opacity .2s;line-height:1;text-box-trim:trim-both;text-box-edge:cap alphabetic;transform:translateY(-5px)}
+.contacts-brig-phone{display:flex;flex-direction:row;align-items:stretch}
+.contacts-phone-block{display:flex;flex-direction:column;justify-content:space-between;flex-shrink:0;align-items:flex-end}
+.contacts-phone{font-family:var(--f1);font-weight:700;font-size:clamp(22px,2.8vw,40px);color:var(--c-white);text-decoration:underline;display:block;transition:opacity .2s;line-height:1;text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-phone:hover{opacity:.8}
-.contacts-recruiter-label{font-family:var(--f1);font-weight:700;font-size:var(--h2);color:var(--c-white);text-transform:capitalize;line-height:56px;white-space:nowrap;text-box-trim:trim-both;text-box-edge:cap alphabetic}
+.contacts-recruiter-label{font-family:var(--f1);font-weight:700;font-size:var(--h2);color:var(--c-white);text-transform:capitalize;line-height:1.2;white-space:nowrap;text-box-trim:trim-both;text-box-edge:cap alphabetic}
 .contacts-btn{
   display:inline-flex;align-items:center;gap:10px;
   height:44px;flex-shrink:0;transform:translateY(3px);
@@ -382,6 +383,17 @@ img{display:block;max-width:100%}
 .contacts-btn:hover{opacity:.85}
 .contacts-btn-arrow{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;flex-shrink:0;margin-top:4px}
 .contacts-head{padding:var(--py) 0 0;display:flex;flex-direction:column;align-items:center;gap:20px}
+.contacts-head .sec-heading{display:none}
+@media(min-width:768px){
+  .contacts-recruiter-label{font-size:clamp(20px,calc(0.962vw + 10.17px),24px);line-height:1.2}
+  .contacts-phone{font-size:clamp(20px,calc(1.786vw + 6.29px),32px)}
+  .contacts-row{display:grid;grid-template-columns:auto auto auto;justify-content:space-between;align-items:start}
+  .contacts-id{align-self:center}
+  .contacts-brig-phone{grid-column:2/4;display:grid;grid-template-columns:subgrid;align-items:stretch;align-self:center}
+}
+@media(min-width:900px) and (max-width:1150px){
+  .contacts-id{gap:10px}
+}
 
 /* ─── REVEAL UTIL ────────────────────────────────── */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s,transform .7s}
@@ -588,16 +600,16 @@ img{display:block;max-width:100%}
   /* ── Contacts ── */
   .contacts-head{gap:20px;padding-top:0}
   .contacts-btn{width:100%;justify-content:center;height:52px;transform:none}
-  .contacts-row{flex-direction:column;align-items:center;gap:32px}
-  .contacts-phone-block{order:1;align-items:center;width:100%}
-  .contacts-phone{text-align:center;transform:none}
+  .contacts-row{flex-direction:column;align-items:center;gap:0}
+  .contacts-brig-phone{display:contents}
+  .contacts-left-block{display:grid;grid-template-columns:auto 1fr;min-height:111px;gap:0}
+  .contacts-phone-block{grid-row:1;grid-column:1/3;flex-direction:column;align-items:center;gap:20px;padding-bottom:24px}
+  .contacts-phone{text-align:center}
   .contacts-recruiter-label{text-align:center}
-  .contacts-head .sec-heading{display:none}
-  .contacts-left-block{order:2;display:grid;grid-template-columns:auto auto;grid-template-rows:1fr 1fr;min-height:111px;gap:6px 0}
   .contacts-id{display:contents}
-  .contacts-emblem{grid-row:1/3;grid-column:1;align-self:stretch;display:flex;align-items:center;padding-right:14px}
-  .contacts-bn{grid-row:1;grid-column:2;align-self:end;font-size:clamp(14px,4vw,22px);padding-left:14px;margin-bottom:8px}
-  .contacts-brig{grid-row:2;grid-column:2;align-self:start;font-size:clamp(10px,3vw,16px);padding-left:14px}
+  .contacts-emblem{grid-row:2/4;grid-column:1;align-self:stretch;display:flex;align-items:center;padding-right:14px}
+  .contacts-bn{grid-row:2;grid-column:2;align-self:end;font-size:clamp(14px,4vw,22px);padding-left:14px;margin-bottom:8px}
+  .contacts-brig{grid-row:3;grid-column:2;align-self:start;font-size:clamp(10px,3vw,16px);padding-left:14px}
   .faq-q{min-height:51px;padding:11px 18px}
   /* ── Section snap scroll ── */
   html{scroll-snap-type:y proximity}
@@ -1144,7 +1156,7 @@ img{display:block;max-width:100%}
   </div>
   <div class="contacts-row reveal">
 
-    <!-- Ембл + назва + бригада -->
+    <!-- Ембл + назва + бригада + телефон -->
     <div class="contacts-left-block">
       <div class="contacts-id">
         <div class="contacts-emblem">
@@ -1152,17 +1164,17 @@ img{display:block;max-width:100%}
         </div>
         <div class="contacts-bn">4 Механізований<br>Батальйон</div>
       </div>
-      <div class="contacts-brig">
-        Окремої Президентської<br>
-        Бригади ім. Гетьмана<br>
-        Богдана Хмельницького
+      <div class="contacts-brig-phone">
+        <div class="contacts-brig">
+          Окремої Президентської<br>
+          Бригади ім. Гетьмана<br>
+          Богдана Хмельницького
+        </div>
+        <div class="contacts-phone-block">
+          <a class="contacts-phone" href="tel:+380679994623">+380 67 999 4623</a>
+          <div class="contacts-recruiter-label">Рекрутер</div>
+        </div>
       </div>
-    </div>
-
-    <!-- Телефон + рекрутер -->
-    <div class="contacts-phone-block">
-      <a class="contacts-phone" href="tel:+380679994623">+380 67 999 4623</a>
-      <div class="contacts-recruiter-label">Рекрутер</div>
     </div>
 
   </div>

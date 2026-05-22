@@ -248,6 +248,28 @@ img{display:block;max-width:100%}
 .cmd-quote{background:#434343;padding:32px 10px 32px 32px;width:min(449px,100%)}
 .cmd-quote p{font-family:var(--f1);font-weight:700;font-size:clamp(15px,1.5vw,22px);color:var(--c-w85);line-height:1.5}
 .cmd-bio{font-family:var(--f1);font-weight:400;font-size:clamp(14px,1.5vw,24px);color:var(--c-w85);line-height:1.58;letter-spacing:.024px}
+.cmd-bio-btn{align-self:flex-start;border:1px solid var(--c-line);border-radius:6px;background:transparent;cursor:pointer;padding:0 20px;height:44px;display:inline-flex;align-items:center;white-space:nowrap;font-family:var(--f1);font-weight:400;font-size:clamp(14px,1.2vw,18px);color:var(--c-white);transition:background .2s,opacity .2s}
+.cmd-bio-btn:hover{background:rgba(255,255,255,.1)}
+.cmd-modal-box{padding:0!important;overflow:hidden!important;display:flex;flex-direction:column}
+.cmd-modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:32px 40px 24px;border-bottom:1px solid rgba(0,0,0,.08);flex-shrink:0}
+.cmd-modal-header .modal-close{position:static;flex-shrink:0;margin-top:-4px}
+.cmd-modal-header-info{flex:1;min-width:0}
+.cmd-modal-header-info .modal-title{margin-bottom:6px}
+.cmd-modal-header-info .modal-sub{margin-bottom:0}
+.cmd-modal-body{overflow-y:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch}
+.cmd-modal-photo-wrap{display:none}
+.cmd-modal-photo{width:100%;height:300px;object-fit:cover;object-position:center 20%;display:block}
+@media(max-width:767px){.cmd-modal-photo-wrap{display:block;overflow:hidden}}
+.cmd-modal-fade{position:sticky;top:0;height:56px;margin-bottom:-56px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);mask-image:linear-gradient(to bottom,white 15%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,white 15%,transparent 100%);pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}
+.cmd-modal-fade-bottom{position:sticky;bottom:0;height:56px;margin-top:-56px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);mask-image:linear-gradient(to top,white 15%,transparent 100%);-webkit-mask-image:linear-gradient(to top,white 15%,transparent 100%);pointer-events:none;z-index:5}
+.cmd-modal-bio-text{font-family:var(--f1);font-size:16px;color:#000;line-height:1.7;padding:20px 40px 40px}
+.cmd-modal-bio-text p{margin:0 0 14px}
+.cmd-modal-bio-text p:last-child{margin-bottom:0}
+@media(min-width:768px){
+  .cmd-modal-bio-text.two-col{column-count:2;column-gap:32px}
+  .cmd-modal-bio-text.two-col p{break-inside:avoid}
+  #cmd-modal .modal-box.wide{width:860px;max-width:92vw}
+}
 
 /* ─── REELS ──────────────────────────────────────── */
 .reels-sec{padding:0 var(--px) var(--py)}
@@ -302,6 +324,9 @@ img{display:block;max-width:100%}
 .modal-box{background:#fff;border-radius:16px;padding:40px;width:600px;max-width:95vw;max-height:90vh;overflow-y:auto;position:relative;animation:fadeInUp .3s ease;-webkit-overflow-scrolling:touch}
 @media(max-width:767px){
   .modal-box{width:90vw;max-width:90vw;border-radius:16px;padding:24px 20px 32px;max-height:none;overflow-y:visible}
+  #cmd-modal .modal-box{max-height:90dvh}
+  .cmd-modal-header{padding:24px 20px 20px}
+  .cmd-modal-bio-text{padding:16px 20px 32px}
   .modal-reqs-list{gap:12px}
   .modal-reqs{margin-bottom:24px}
   .modal-sub{margin-bottom:24px}
@@ -597,6 +622,7 @@ img{display:block;max-width:100%}
   .cmd-quote p{color:#434343;opacity:.8;text-transform:uppercase;font-size:clamp(13px,3.5vw,16px);line-height:1.4}
   .cmd-name{padding:20px 16px 0;font-size:clamp(16px,4.5vw,20px);line-height:1.35}
   .cmd-bio{font-size:clamp(13px,3.5vw,15px);padding:8px 16px 0 16px;line-height:1.45}
+  .cmd-bio-btn{height:34px;margin:12px 16px 0;padding:0 14px;font-size:13px}
   /* ── Contacts ── */
   .contacts-head{gap:20px;padding-top:0}
   .contacts-btn{width:100%;justify-content:center;height:52px;transform:none}
@@ -902,10 +928,9 @@ img{display:block;max-width:100%}
       <div class="cmd-info">
         <h3 class="cmd-name">«ЄГЕРЬ» Максим Білик</h3>
         <p class="cmd-rank">Командир батальйону, підполковник</p>
-        
+
         <blockquote class="cmd-quote"><p>Комунікація в нашому батальйоні будується на адекватності, братерстві та людяності. Ми не підставляємо людей і не залишаємо один одного віч-на-віч із проблемою.</p></blockquote>
-        <p class="cmd-bio"> На війні з 2017 року. Починав шлях з командира взводу. Має артилерійську освіту. Керував діями підрозділу на Краматорському, Слов'янському та Сіверському напрямках.
-          </p>
+        <button class="cmd-bio-btn" onclick="openCmdModal('єгерь')">Читати біо</button>
       </div>
     </article>
 
@@ -919,7 +944,7 @@ img{display:block;max-width:100%}
         <h3 class="cmd-name">«МАВР» Роман Назаренко</h3>
         <p class="cmd-rank">Заступник командиру батальйону, майор</p>
         <blockquote class="cmd-quote"><p>У нас немає «паркетних» офіцерів. Все управління батальйону має бойовий досвід і пройшло через окопи.</p></blockquote>
-        <p class="cmd-bio">В свій час закінчив Одеський інститут сухопутних військ. Виконував бойові завдання в Іраку. Від початку повномасштабного вторгнення служить в Окремій президентській бригаді, був командиром відділеня, взводу, роти. З 2024 року заступник командира батальйону.</p>
+        <button class="cmd-bio-btn" onclick="openCmdModal('мавр')">Читати біо</button>
       </div>
     </article>
 
@@ -933,7 +958,7 @@ img{display:block;max-width:100%}
         <h3 class="cmd-name">«ЛІМОН» Ім'я Прізвище</h3>
         <p class="cmd-rank">Головний сержант, Старший сержант</p>
         <blockquote class="cmd-quote"><p>Пишаюсь очолювати один з найпотужніших батальйонів бригади. Для нас життя усіх без винятку — головна цінність!</p></blockquote>
-        <p class="cmd-bio">Просувався в напрямку Балаклії: сили зачистили Асіївку, Шевелівку, а 8-го березня зробили спробу звільнення села Гусарівка. Під час штурму бійці знищили десятки одиниць техніки противника.</p>
+        <button class="cmd-bio-btn" onclick="openCmdModal('лімон')">Читати біо</button>
       </div>
     </article>
 
@@ -1200,6 +1225,24 @@ img{display:block;max-width:100%}
         <span class="contacts-btn-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="2" y1="14" x2="13" y2="3" stroke="black" stroke-width="2.5" stroke-linecap="butt"/><polyline points="7,3 13,3 13,9" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>
       </a>
       <span class="modal-anketa-hint">Анкета відкриється в Google Forms.</span>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="cmd-modal" onclick="closeCmdModalOutside(event)">
+  <div class="modal-box cmd-modal-box">
+    <div class="cmd-modal-header">
+      <div class="cmd-modal-header-info">
+        <div class="modal-title" id="cmd-modal-name"></div>
+        <div class="modal-sub" id="cmd-modal-rank"></div>
+      </div>
+      <button class="modal-close" onclick="closeCmdModal()">✕</button>
+    </div>
+    <div class="cmd-modal-body">
+      <div class="cmd-modal-fade"></div>
+      <div class="cmd-modal-photo-wrap" id="cmd-modal-photo-wrap"></div>
+      <div class="cmd-modal-bio-text" id="cmd-modal-bio"></div>
+      <div class="cmd-modal-fade-bottom"></div>
     </div>
   </div>
 </div>
@@ -1537,7 +1580,85 @@ function closeModal(){
   window.scrollTo(0,_modalScrollY);
 }
 function closeModalOutside(e){if(e.target===document.getElementById('modal'))closeModal()}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeBurger()}});
+
+const CMD_BIOS={
+  'єгерь':{name:'«ЄГЕРЬ» Максим Білик',rank:'Командир батальйону, підполковник',photo:'assets/images/commanders/cmd-1.webp',bio:`2015 року закінчив Сумське артилерійське училище.
+
+Наступного року уклав контракт із ЗСУ та долучився до Президентського полка. Вступив на посаду командира взводу спеціального призначення.
+
+З 2017 року в складі 1-го механізованого батальйону Президентського полку керував діями свого підрозділу на Краматорському та Слов'янському напрямках.
+
+Від початку повномасштабного вторгнення рота під командуванням Єгеря здійснювала охорону та оборону державних об'єктів: Кабінету Міністрів України, Верховної Ради України та Офісу Президента України. У 2022 році був призначений заступником начальника штабу 1-го механізованого батальйону.
+
+У 2023 році був переведений до 4-го механізованого батальйону на Сіверський напрямок. Вступив на посаду начальника штабу.
+
+Від січня 2025 року обіймає посаду командира 4-го механізованого батальйону.`},
+  'мавр':{name:'«МАВР» Роман Назаренко',rank:'Заступник командиру батальйону, майор',photo:'assets/images/commanders/cmd-2.webp',twoCol:true,bio:`У 1997 році закінчив Одеський інститут сухопутних військ. Того ж року був призначений командиром взводу спеціального призначення 2-го батальйону спеціального призначення 18-го полку спеціального призначення 6-ї дивізії Національної гвардії України.
+
+1999 рік — підвищений до командира роти спеціального призначення 1-го батальйону спеціального призначення 18-го полку спеціального призначення 6-ї дивізії Національної гвардії України.
+
+2001 рік — командир механізованого взводу 229-го механізованого полку 72-ої механізованої дивізії. Наступного року був призначений на посаду командира окремого розвідувального взводу 1-го механізованого батальйону 72-ої окремої механізованої бригади.
+
+2003 та 2004 рр. — виконував бойові завдання в Іраку. Командував 2-м механізованим взводом 1-ої механізованої роти 51-го окремого механізованого батальйону 5-ї окремої механізованої бригади.
+
+Навесні 2004 повернувся до 72-ої окремої механізованої бригади. Вступив на посаду командира гранатометного відділення 2-го механізованого батальйону.
+
+Від початку повномасштабного вторгнення служить в Окремій президентській бригаді. З березня 2022 по вересень 2024 року — командир 11-ї механізованої роти 4-го механізованого батальйону.
+
+Вересень 2024 року - донині — заступник командира 4-го механізованого батальйону.`},
+  'лімон':{name:'«ЛІМОН» Юрій Грубик',rank:'Штаб-сержант',photo:'assets/images/commanders/cmd-3.webp',twoCol:true,bio:`У 2013 році Юрій був призваний на строкову військову службу до Президентського полку. Служив на посаді стрільця-помічника гранатометника 2-го відділення 2-го взводу спеціального призначення роти спеціального призначення.
+
+Від 2017 року брав безпосередню участь в АТО та ООС. Розпочав на посаді стрільця групи спеціального призначення. Того ж року став на посаду командира 2-го відділення 2-го взводу роти спеціального призначення.
+
+2018 рік — головний сержант 3-го взводу спеціального призначення роти спеціального призначення.
+
+2019 рік — став на посаду головного сержанта роти спеціального призначення Окремого президентського полку.
+
+24 лютого 2022 року Юрій зустрів у Києві, перебуваючи на посаді головного сержанта 3-ї спеціальної роти 1-го спеціального батальйону Окремого президентського полку.
+
+2023 рік — головний сержант 11-ї механізованої роти 4-го механізованого батальйону Окремої президентської бригади.
+
+У 2024 році призначений головним сержантом 10-ї механізованої роти 4-го механізованого батальйону Окремої президентської бригади.
+
+Від 2025 року й донині — головний сержант 4-го механізованого батальйону Окремої президентської бригади.`}
+};
+let _cmdModalScrollY=0;
+function openCmdModal(key){
+  const cmd=CMD_BIOS[key];
+  if(!cmd)return;
+  document.getElementById('cmd-modal-name').textContent=cmd.name;
+  document.getElementById('cmd-modal-rank').textContent=cmd.rank;
+  const photoWrap=document.getElementById('cmd-modal-photo-wrap');
+  photoWrap.innerHTML=cmd.photo?`<img class="cmd-modal-photo" src="${cmd.photo}" alt="${cmd.name}">`:'';
+  const bioEl=document.getElementById('cmd-modal-bio');
+  bioEl.innerHTML=cmd.bio.split('\n\n').map(p=>`<p>${p.trim()}</p>`).join('');
+  bioEl.classList.toggle('two-col',!!cmd.twoCol);
+  document.querySelector('#cmd-modal .modal-box').classList.toggle('wide',!!cmd.twoCol);
+  document.getElementById('cmd-modal').classList.add('open');
+  const _cb=document.querySelector('.cmd-modal-body');
+  _cb.scrollTop=0;
+  _cb.querySelector('.cmd-modal-fade').style.opacity='0';
+  _cmdModalScrollY=window.scrollY;
+  document.body.style.overflow='hidden';
+  document.body.style.position='fixed';
+  document.body.style.top=`-${_cmdModalScrollY}px`;
+  document.body.style.width='100%';
+}
+function closeCmdModal(){
+  document.getElementById('cmd-modal').classList.remove('open');
+  document.body.style.position='';
+  document.body.style.top='';
+  document.body.style.overflow='';
+  document.body.style.width='';
+  window.scrollTo(0,_cmdModalScrollY);
+}
+function closeCmdModalOutside(e){if(e.target===document.getElementById('cmd-modal'))closeCmdModal()}
+
+document.querySelector('.cmd-modal-body').addEventListener('scroll',function(){
+  this.querySelector('.cmd-modal-fade').style.opacity=Math.min(1,this.scrollTop/36);
+},{passive:true});
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeCmdModal();closeBurger()}});
 
 /* ── CMD QUOTE CENTERING ── */
 function updateCmdQuotes(){

@@ -259,9 +259,16 @@ img{display:block;max-width:100%}
 .cmd-modal-body{overflow-y:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch}
 .cmd-modal-photo-wrap{display:none}
 .cmd-modal-photo{width:100%;height:300px;object-fit:cover;object-position:center 20%;display:block}
-@media(max-width:767px){.cmd-modal-photo-wrap{display:block;overflow:hidden}}
-.cmd-modal-fade{position:sticky;top:0;height:56px;margin-bottom:-56px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);mask-image:linear-gradient(to bottom,white 15%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,white 15%,transparent 100%);pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}
-.cmd-modal-fade-bottom{position:sticky;bottom:0;height:56px;margin-top:-56px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);mask-image:linear-gradient(to top,white 15%,transparent 100%);-webkit-mask-image:linear-gradient(to top,white 15%,transparent 100%);pointer-events:none;z-index:5}
+.cmd-modal-body-info{display:none}
+.cmd-modal-body-name{-webkit-line-clamp:unset;overflow:visible}
+@media(max-width:767px){
+  .cmd-modal-photo-wrap{display:block;overflow:hidden}
+  .cmd-modal-body-info{display:block;padding:20px 20px 0}
+  .cmd-modal-header-info{display:none}
+  .cmd-modal-header{padding:16px 20px;align-items:center}
+}
+.cmd-modal-fade{position:sticky;top:0;height:56px;margin-bottom:-56px;background:linear-gradient(to bottom,#fff 30%,transparent 100%);pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}
+.cmd-modal-fade-bottom{position:sticky;bottom:0;height:56px;margin-top:-56px;background:linear-gradient(to top,#fff 30%,transparent 100%);pointer-events:none;z-index:5}
 .cmd-modal-bio-text{font-family:var(--f1);font-size:16px;color:#000;line-height:1.7;padding:20px 40px 40px}
 .cmd-modal-bio-text p{margin:0 0 14px}
 .cmd-modal-bio-text p:last-child{margin-bottom:0}
@@ -1241,6 +1248,10 @@ img{display:block;max-width:100%}
     <div class="cmd-modal-body">
       <div class="cmd-modal-fade"></div>
       <div class="cmd-modal-photo-wrap" id="cmd-modal-photo-wrap"></div>
+      <div class="cmd-modal-body-info">
+        <div class="modal-title cmd-modal-body-name" id="cmd-modal-name-m"></div>
+        <div class="modal-sub cmd-modal-body-rank" id="cmd-modal-rank-m"></div>
+      </div>
       <div class="cmd-modal-bio-text" id="cmd-modal-bio"></div>
       <div class="cmd-modal-fade-bottom"></div>
     </div>
@@ -1628,6 +1639,8 @@ function openCmdModal(key){
   if(!cmd)return;
   document.getElementById('cmd-modal-name').textContent=cmd.name;
   document.getElementById('cmd-modal-rank').textContent=cmd.rank;
+  document.getElementById('cmd-modal-name-m').textContent=cmd.name;
+  document.getElementById('cmd-modal-rank-m').textContent=cmd.rank;
   const photoWrap=document.getElementById('cmd-modal-photo-wrap');
   photoWrap.innerHTML=cmd.photo?`<img class="cmd-modal-photo" src="${cmd.photo}" alt="${cmd.name}">`:'';
   const bioEl=document.getElementById('cmd-modal-bio');
@@ -1655,7 +1668,9 @@ function closeCmdModal(){
 function closeCmdModalOutside(e){if(e.target===document.getElementById('cmd-modal'))closeCmdModal()}
 
 document.querySelector('.cmd-modal-body').addEventListener('scroll',function(){
-  this.querySelector('.cmd-modal-fade').style.opacity=Math.min(1,this.scrollTop/36);
+  const photoH=document.getElementById('cmd-modal-photo-wrap').offsetHeight||0;
+  const progress=Math.max(0,this.scrollTop-photoH);
+  this.querySelector('.cmd-modal-fade').style.opacity=Math.min(1,progress/36);
 },{passive:true});
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeCmdModal();closeBurger()}});

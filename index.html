@@ -261,11 +261,14 @@ img{display:block;max-width:100%}
 .cmd-modal-photo{width:100%;height:300px;object-fit:cover;object-position:center 20%;display:block}
 .cmd-modal-body-info{display:none}
 .cmd-modal-body-name{-webkit-line-clamp:unset;overflow:visible}
+.cmd-modal-close-m{display:none}
 @media(max-width:767px){
   .cmd-modal-photo-wrap{display:block;overflow:hidden}
   .cmd-modal-body-info{display:block;padding:20px 20px 0}
-  .cmd-modal-header-info{display:none}
-  .cmd-modal-header{padding:16px 20px;align-items:center}
+  .cmd-modal-body-info .modal-sub{margin-bottom:0}
+  .cmd-modal-header{display:none}
+  .cmd-modal-close-m{display:flex;position:absolute;top:16px;right:16px;z-index:20;background:rgba(0,0,0,.45);color:#fff}
+  .cmd-modal-close-m:hover{background:rgba(0,0,0,.65)}
 }
 .cmd-modal-fade{position:sticky;top:0;height:56px;margin-bottom:-56px;background:linear-gradient(to bottom,#fff 30%,transparent 100%);pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}
 .cmd-modal-fade-bottom{position:sticky;bottom:0;height:56px;margin-top:-56px;background:linear-gradient(to top,#fff 30%,transparent 100%);pointer-events:none;z-index:5}
@@ -333,7 +336,7 @@ img{display:block;max-width:100%}
   .modal-box{width:90vw;max-width:90vw;border-radius:16px;padding:24px 20px 32px;max-height:none;overflow-y:visible}
   #cmd-modal .modal-box{max-height:90dvh}
   .cmd-modal-header{padding:24px 20px 20px}
-  .cmd-modal-bio-text{padding:16px 20px 32px}
+  .cmd-modal-bio-text{padding:10px 20px 32px}
   .modal-reqs-list{gap:12px}
   .modal-reqs{margin-bottom:24px}
   .modal-sub{margin-bottom:24px}
@@ -1245,6 +1248,7 @@ img{display:block;max-width:100%}
       </div>
       <button class="modal-close" onclick="closeCmdModal()">✕</button>
     </div>
+    <button class="modal-close cmd-modal-close-m" onclick="closeCmdModal()">✕</button>
     <div class="cmd-modal-body">
       <div class="cmd-modal-fade"></div>
       <div class="cmd-modal-photo-wrap" id="cmd-modal-photo-wrap"></div>

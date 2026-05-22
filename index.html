@@ -635,7 +635,9 @@ img{display:block;max-width:100%}
   .cmd-rank{display:none}
   .cmd-quote{order:-1;position:relative;z-index:5;margin:0 16px;padding:20px 12px 20px 20px;background:#d9d9d9;width:calc(100% - 32px)}
   .cmd-quote p{color:#434343;opacity:.8;text-transform:uppercase;font-size:clamp(13px,3.5vw,16px);line-height:1.4}
-  .cmd-quote-mark,.cmd-quote-mark-close{display:none}
+  .cmd-quote-mark,.cmd-quote-mark-close{display:block;position:absolute;filter:brightness(0)}
+  .cmd-quote-mark{top:-9px;left:20px;margin:0}
+  .cmd-quote-mark-close{bottom:-9px;right:12px;margin:0;transform:rotate(180deg)}
   .cmd-name{padding:20px 16px 0;font-size:clamp(16px,4.5vw,20px);line-height:1.35}
   .cmd-bio{font-size:clamp(13px,3.5vw,15px);padding:8px 16px 0 16px;line-height:1.45}
   .cmd-bio-btn{height:34px;margin:12px 16px 0;padding:0 14px;font-size:13px}

@@ -950,10 +950,10 @@ img{display:block;max-width:100%}
       </div>
     </article>
 
-    <article class="cmd-card" data-rank="Командир роти">
+    <article class="cmd-card" data-rank="Заступник командиру батальйону">
       <div class="cmd-photo">
         <div class="cmd-photo-overlay"></div>
-        <img class="bg" src="assets/images/commanders/cmd-2.webp" alt="Командир роти" onerror="this.style.display='none'"/>
+        <img class="bg" src="assets/images/commanders/cmd-2.webp" alt="Заступник командиру батальйону" onerror="this.style.display='none'"/>
         <div class="cmd-badge"><img src="assets/images/ui/badge-commander.png" alt=""/></div>
       </div>
       <div class="cmd-info">
@@ -964,15 +964,15 @@ img{display:block;max-width:100%}
       </div>
     </article>
 
-    <article class="cmd-card" data-rank="Головний сержант">
+    <article class="cmd-card" data-rank="Штаб-сержант">
       <div class="cmd-photo">
         <div class="cmd-photo-overlay"></div>
-        <img class="bg" src="assets/images/commanders/cmd-3.webp" alt="Головний сержант" onerror="this.style.display='none'"/>
+        <img class="bg" src="assets/images/commanders/cmd-3.webp" alt="Штаб-сержант" onerror="this.style.display='none'"/>
         <div class="cmd-badge"><img src="assets/images/ui/badge-commander.png" alt=""/></div>
       </div>
       <div class="cmd-info">
         <h3 class="cmd-name">«ЛІМОН» Юрій Грубик</h3>
-        <p class="cmd-rank">Головний сержант, Старший сержант</p>
+        <p class="cmd-rank">Штаб-сержант</p>
         <blockquote class="cmd-quote"><img class="cmd-quote-mark" src="assets/images/quote-marks.svg" alt="" aria-hidden="true"><p>Мій принцип — жити разом з особовим складом, бути поруч, ділити з ними побут і всі рішення ухвалювати разом.</p><img class="cmd-quote-mark-close" src="assets/images/quote-marks.svg" alt="" aria-hidden="true"></blockquote>
         <button class="cmd-bio-btn" onclick="openCmdModal('лімон')">Читати біо</button>
       </div>
@@ -1275,6 +1275,7 @@ const SHOW_REELS = false; // true — показати розділ «Відгу
 if(!SHOW_REELS){
   document.getElementById('reels').style.display='none';
   document.querySelectorAll('[data-target="reels"]').forEach(b=>b.style.display='none');
+  document.getElementById('jobs').style.scrollSnapAlign='start';
 }
 
 /* ── SCROLL & HEADER ── */
